@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        // instanciate an object
+        // Instantiate an object
         //Movie rambo = new Movie("Rambo");
         //System.out.println(rambo.getTitle());
 
@@ -99,7 +99,7 @@ public class Main {
 
             Serie friends = new Serie("Friends", "Comedia", "Gabe Flores",
                     15000, 6);
-            // using toSting overrided function
+            // using toSting override function
             System.out.println(friends);
 
             break;

@@ -1,11 +1,13 @@
 package com.eduardocode.jasonviewer.model;
 
+import java.util.ArrayList;
+
 public class Serie extends Film {
     // attributes
     private int id;
     private int seasonQuantity;
     // chapter array
-    private Chapter[] chapters;
+    private ArrayList<Chapter> chapters;
 
     public Serie(String title, String genre, String director,
                  int duration, int seasonQuantity) {
@@ -38,11 +40,13 @@ public class Serie extends Film {
         this.seasonQuantity = seasonQuantity;
     }
 
-    public Chapter[] getChapters() {
-        return chapters;
-    }
+	public ArrayList<Chapter> getChapters() {
+		return chapters;
+	}
 
-    public void setChapters(Chapter[] chapters) {
-        this.chapters = chapters;
-    }
+	public void setChapters(ArrayList<Chapter> chapters) {
+		this.chapters = chapters;
+	}
+
+    
 }
