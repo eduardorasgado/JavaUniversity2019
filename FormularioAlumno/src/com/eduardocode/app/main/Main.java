@@ -3,15 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.eduardocode.app.service;
-
-import com.eduardocode.app.model.Alumno;
-import java.util.Date;
+package com.eduardocode.app.main;
 
 /**
  *
  * @author cheetos
  */
-public interface IAlumnoService {
-    Alumno saveAlumno(String nombre, int edad, int control, Date fechaIngreso);
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    
 }

@@ -6,6 +6,7 @@
 package com.eduardocode.app.service;
 
 import com.eduardocode.app.model.Alumno;
+import java.util.Date;
 
 /**
  *
@@ -14,9 +15,10 @@ import com.eduardocode.app.model.Alumno;
 public class AlumnoServiceImp implements IAlumnoService {
 
     @Override
-    public Alumno saveAlumno(String nombre, int edad, int control) {
+    public Alumno saveAlumno(String nombre, int edad, int control, Date fechaIngreso) {
         Alumno alumno = new Alumno(nombre, edad);
         alumno.setControl(control);
+        alumno.setFechaIngreso(fechaIngreso);
         return alumno;
     }
     

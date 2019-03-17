@@ -6,13 +6,8 @@
 package com.eduardocode.app.UI;
 import com.eduardocode.app.model.Alumno;
 import com.toedter.calendar.JCalendar;
-import java.util.Calendar;
-import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -21,10 +16,6 @@ import javax.swing.JTextField;
  * @author cheetos
  */
 public class FormularioPrincipal extends JFrame {
-    private String nombre;
-    private int edad;
-    private int numControl;
-    private Date fechaIngreso;
     
     public FormularioPrincipal() {
         initComponents();
@@ -216,8 +207,7 @@ public class FormularioPrincipal extends JFrame {
 
     public String getNombreText(){
         //
-        nombre = this.nameTextField.getText();
-        return nombre;
+        return this.nameTextField.getText();
     }
     
     public JTextField getEdadText() {
@@ -240,6 +230,10 @@ public class FormularioPrincipal extends JFrame {
     
     public JButton getBtnSalir() {
         return exitButton;        
+    }
+    
+    public void showInputError(JFrame element, String errorMessage){
+        JOptionPane.showMessageDialog(element, errorMessage);
     }
     
     public void showAlumnoCreated(Alumno alumno) {
