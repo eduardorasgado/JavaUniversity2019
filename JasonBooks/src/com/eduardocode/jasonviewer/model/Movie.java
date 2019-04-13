@@ -1,5 +1,6 @@
 package com.eduardocode.jasonviewer.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 // Java classes can have as many interfaces as you need
@@ -47,6 +48,17 @@ public class Movie extends Film implements IPlayable {
                 ? (dateF.getTime() - dateI.getTime() / 1000) : 0;
 
         this.setTimeViewed((int)result);
+    }
+    
+    public static ArrayList<Movie> createMovieList() {
+    	ArrayList<Movie> movies = new ArrayList<Movie>();
+    	movies.add(new Movie("Moana", "Terror", "Terry Colby", 120, (short) 2017));
+    	movies.add(new Movie("Indestructibles", "Accion", "Terry Colby", 130, (short) 2017));
+    	movies.add(new Movie("King Kong 2", "Animales", "Steven Spielberg", 210, (short) 2018));
+    	movies.add(new Movie("Batman 2", "Heroes", "Patrick M.", 180, (short) 2018));
+    	movies.add(new Movie("Captain Marvel", "Aventuras", "Marvel Studios", 140, (short) 2019));
+    	return movies;
+    	
     }
 
     //  SETTERS AND GETTERS

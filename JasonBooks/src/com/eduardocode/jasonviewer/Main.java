@@ -5,16 +5,13 @@ import com.eduardocode.jasonviewer.model.Magazine;
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.model.Serie;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Main {
 
     public static void main(String[] args)
     {
-        // Instantiate an object
-        //Movie rambo = new Movie("Rambo");
-        //System.out.println(rambo.getTitle());
-
         int exit = 0;
         do {
             printMenu();
@@ -39,7 +36,7 @@ public class Main {
     private static void takeDecision()
     {
         // Leer la respuesta del usuario
-        int opcion = 4;
+        int opcion = 1;
 
         switch (opcion) {
             case 0:
@@ -65,7 +62,7 @@ public class Main {
                 makeReport(today);
                 break;
             default:
-                System.out.println("Opcion inválida");
+                System.out.println("Opcion invalida");
                 break;
         }
     }
@@ -77,14 +74,13 @@ public class Main {
         do {
             System.out.println("::MOVIES::");
             // Creating a movie instance
-            Movie cocoMovie = new Movie("Coco", "Animation",
-                    "Lee Unkrich", 134, (short)2017);
-            System.out.println(cocoMovie.getTitle());
-            cocoMovie.setTitle("Rambo");
-            cocoMovie.setGenre("Action");
-            System.out.println(cocoMovie.getTitle());
-            // calling toString method overloaded from Object->film->Movie
-            System.out.println(cocoMovie);
+            ArrayList<Movie> movies = Movie.createMovieList();
+            
+            for(Movie m : movies) {
+            	System.out.println("============");
+            	System.out.println(m.getTitle());
+            	System.out.println(m.getGenre());
+            }
 
             break;
         } while (exit == 1);
