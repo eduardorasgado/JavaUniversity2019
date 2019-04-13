@@ -37,7 +37,7 @@ public class Movie extends Film implements IPlayable {
 	public String toString() {
 		return "Title=" + getTitle() + ", Genre="
 				+ getGenre() + ", \nDirector=" + getDirector() + ", \nDuration=" + getDuration() + ", \nYear="
-				+ getYear() + "\visto:"+(isViewed() ? "Si" : "No")+"\ntiempo visto en segundos:" + timeViewed; 
+				+ getYear() + "\nvisto:"+(isViewed() ? "Si" : "No")+"\ntiempo visto en segundos:" + timeViewed; 
 	}
 
 	@Override

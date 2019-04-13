@@ -4,7 +4,9 @@ import com.eduardocode.jasonviewer.model.Book;
 import com.eduardocode.jasonviewer.model.Magazine;
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.model.Serie;
+import com.eduardocode.reportbuilder.model.Report;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -13,6 +15,7 @@ public class Main {
 
 	private static Scanner sc = null;
 	private static int exit = 1;
+    private static ArrayList<Movie> movies = null;
 	
     public static void main(String[] args)
     {
@@ -85,7 +88,7 @@ public class Main {
         do {
             System.out.println("::MOVIES::");
             // Creating a movie instance
-            ArrayList<Movie> movies = Movie.createMovieList();
+            movies = Movie.createMovieList();
             
             for(int i = 0; i < movies.size(); i++) {
             	String viewed = movies.get(i).isViewed() ? "Si" : "No";
@@ -101,7 +104,7 @@ public class Main {
             
             try {
             	exit = Integer.valueOf(sc.nextLine());
-            	if(exit != 0 && exit < 5) {
+            	if(exit != 0 && exit-1 < 5) {
             		Movie movieSelected = movies.get(exit-1);
             		System.out.println("Viendo "+movieSelected+"...\n");
             		movieSelected.setViewed(true);
@@ -113,8 +116,11 @@ public class Main {
 					}
             		movieSelected.stoptToSee(dateI, new Date());
             		
+            		// add new movie to movie list
+            		movies.add(exit-1, movieSelected);
+            		
             		System.out.println("Viste la pelicula:"+ movieSelected);
-            	} else if(exit > 5){
+            	} else if(exit != 0 && exit > 5){
             		System.out.println("**tu opcion es invalida**");
             	}
             	else {
@@ -176,7 +182,28 @@ public class Main {
 
     private static void makeReport()
     {
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    	Date dia = new Date();
+    	String diaString = formatter.format(dia);
+    	
+    	Report report = new Report();
+    	report.setNameFile("reporte"+diaString);
+    	report.setTitle("reporte del dia "+diaString);
+    	report.setExtension("txt");
 
+    	String contentReport = "";
+    	for(Movie m : movies) {
+    		System.out.println("movie: "+m.getTitle());
+    		if(m.isViewed()) {
+        		contentReport += m.getTitle() +"\n";
+    		}
+    	}
+    			
+    	report.setContent(contentReport);
+    	
+    	System.out.println("Creando reporte...");
+    	report.buildReport();
+    	System.out.println("Reporte finalizado.");
     }
 
     private static void makeReport(Date date)
