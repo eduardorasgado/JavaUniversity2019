@@ -105,7 +105,7 @@ public class Main {
             
             try {
             	exit = Integer.valueOf(sc.nextLine());
-            	if(exit != 0 && exit-1 < 5) {
+            	if(exit > 0 && exit != 0 && exit-1 < 5) {
             		Movie movieSelected = movies.get(exit-1);
             		System.out.println("Viendo "+movieSelected+"...\n");
             		movieSelected.setViewed(true);
@@ -121,7 +121,7 @@ public class Main {
             		movies.set(exit-1, movieSelected);
             		
             		System.out.println("Viste la pelicula:"+ movieSelected);
-            	} else if(exit != 0 && exit > 5){
+            	} else if(exit < 0 || exit > 5){
             		System.out.println("**tu opcion es invalida**");
             	}
             	else {
@@ -182,15 +182,12 @@ public class Main {
     }
 
     private static void makeReport()
-    {
-    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-    	Date dia = new Date();
-    	String diaString = formatter.format(dia);
-    	
+    {	
     	Report report = new Report();
-    	report.setNameFile("reporte"+diaString);
-    	report.setTitle("reporte del dia "+diaString);
+    	
+    	report.setNameFile("reporte-general");
     	report.setExtension("txt");
+    	report.setTitle("reporte del dia\n");
 
     	String contentReport = "";
     	for(Movie m : movies) {
@@ -209,7 +206,27 @@ public class Main {
 
     private static void makeReport(Date date)
     {
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    	String diaString = formatter.format(date);
+    	
+    	Report report = new Report();
+    	report.setNameFile("reporte-general"+diaString);
+    	report.setTitle("reporte de la fecha "+diaString);
+    	report.setExtension("txt");
 
+    	String contentReport = "";
+    	for(Movie m : movies) {
+    		//System.out.println("movie: "+m.getTitle()+ " visto:"+ (m.getViewed() ? "Si" : "No"));
+    		if(m.getViewed()) {
+        		contentReport += m.getTitle() +"\n";
+    		}
+    	}
+    			
+    	report.setContent(contentReport);
+    	
+    	System.out.println("Creando reporte...");
+    	report.buildReport();
+    	System.out.println("Reporte finalizado.");
     }
     
     private static boolean validatingScannerInput() {
