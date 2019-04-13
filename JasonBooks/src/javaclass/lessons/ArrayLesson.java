@@ -119,6 +119,24 @@ public class ArrayLesson {
 		
 		
 		System.out.println("Cuatro dimensiones(version estructurada)");
+		
+		for(int i=0; i < fourDim.length; i ++) {
+			System.out.print("[");
+			for(int j = 0; j < fourDim[i].length-1; j++) {
+				System.out.print("[");
+				for(int k = 0; k <= fourDim[i][j].length;k++) {
+					System.out.print("[");
+					// j, k estan invertidas en el ciclo for
+					for(int q = 0; q < fourDim[i][k][j].length;q++) {
+						// k y j estan invertidas para la impresion
+						System.out.print(fourDim[i][k][j][q]+", ");
+					}
+					System.out.print("]");
+				}
+				System.out.println("]");
+			}
+			System.out.println("]");
+		}
 	}
 
 }
