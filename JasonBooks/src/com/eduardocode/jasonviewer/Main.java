@@ -19,6 +19,9 @@ public class Main {
 	
     public static void main(String[] args)
     {
+    	// Creating movies
+        movies = Movie.createMovieList();
+        
     	sc = new Scanner(System.in);
     	
         do {
@@ -87,11 +90,9 @@ public class Main {
         System.out.println("Elegiste movies");
         do {
             System.out.println("::MOVIES::");
-            // Creating a movie instance
-            movies = Movie.createMovieList();
             
             for(int i = 0; i < movies.size(); i++) {
-            	String viewed = movies.get(i).isViewed() ? "Si" : "No";
+            	String viewed = movies.get(i).getViewed() ? "Si" : "No";
             	
             	System.out.println("============");
             	System.out.println((i+1)+". "+movies.get(i).getTitle());
@@ -117,7 +118,7 @@ public class Main {
             		movieSelected.stoptToSee(dateI, new Date());
             		
             		// add new movie to movie list
-            		movies.add(exit-1, movieSelected);
+            		movies.set(exit-1, movieSelected);
             		
             		System.out.println("Viste la pelicula:"+ movieSelected);
             	} else if(exit != 0 && exit > 5){
@@ -193,8 +194,8 @@ public class Main {
 
     	String contentReport = "";
     	for(Movie m : movies) {
-    		System.out.println("movie: "+m.getTitle());
-    		if(m.isViewed()) {
+    		//System.out.println("movie: "+m.getTitle()+ " visto:"+ (m.getViewed() ? "Si" : "No"));
+    		if(m.getViewed()) {
         		contentReport += m.getTitle() +"\n";
     		}
     	}
