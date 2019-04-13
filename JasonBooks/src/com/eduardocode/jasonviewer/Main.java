@@ -7,12 +7,17 @@ import com.eduardocode.jasonviewer.model.Serie;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Main {
 
+	private static Scanner sc = null;
+	private static int exit = 1;
+	
     public static void main(String[] args)
     {
-        int exit = 0;
+    	sc = new Scanner(System.in);
+    	
         do {
             printMenu();
             takeDecision();
@@ -21,7 +26,7 @@ public class Main {
     }
 
     private static void printMenu() {
-        System.out.println("[WELCOME TO JASON VIEWER]");
+        System.out.println("\n[WELCOME TO JASON VIEWER]");
         System.out.println("");
         System.out.println("Selecciona la opcion a la que deseas accesar.");
         System.out.println("1. Movies");
@@ -36,54 +41,80 @@ public class Main {
     private static void takeDecision()
     {
         // Leer la respuesta del usuario
-        int opcion = 1;
-
-        switch (opcion) {
-            case 0:
-                System.out.println("Elegiste Salir");
-                break;
-            case 1:
-                showMovies();
-                break;
-            case 2:
-                showSeries();
-                break;
-            case 3:
-                showBooks();
-                break;
-            case 4:
-                showMagazines();
-                break;
-            case 5:
-                makeReport();
-                break;
-            case 6:
-                Date today = new Date();
-                makeReport(today);
-                break;
-            default:
-                System.out.println("Opcion invalida");
-                break;
-        }
+    	
+    	// parsing de string a entero
+    	try {
+    		exit = Integer.valueOf(sc.nextLine()); // lo que el usuario introduzca en la consola
+    		
+    		switch (exit) {
+	            case 0:
+	                System.out.println("Elegiste Salir");
+	                exit = 0;
+	                break;
+	            case 1:
+	                showMovies();
+	                break;
+	            case 2:
+	                showSeries();
+	                break;
+	            case 3:
+	                showBooks();
+	                break;
+	            case 4:
+	                showMagazines();
+	                break;
+	            case 5:
+	                makeReport();
+	                break;
+	            case 6:
+	                Date today = new Date();
+	                makeReport(today);
+	                break;
+	            default:
+	                System.out.println("Opcion invalida");
+	                break;
+    		}
+    	} catch (NumberFormatException e) {
+    		System.out.println("[Selecciona una opción, tu opcion no es valida]");
+		}
     }
 
     private static void showMovies()
     {
         System.out.println("Elegiste movies");
-        int exit = 1;
         do {
             System.out.println("::MOVIES::");
             // Creating a movie instance
             ArrayList<Movie> movies = Movie.createMovieList();
             
-            for(Movie m : movies) {
+            for(int i = 0; i < movies.size(); i++) {
+            	String viewed = movies.get(i).isViewed() ? "Si" : "No";
+            	
             	System.out.println("============");
-            	System.out.println(m.getTitle());
-            	System.out.println(m.getGenre());
+            	System.out.println((i+1)+". "+movies.get(i).getTitle());
+            	System.out.println(movies.get(i).getGenre());
+            	System.out.println("visto: "+viewed);
             }
-
-            break;
-        } while (exit == 1);
+            System.out.println("0. Regresar al menu anterior");
+        	System.out.println("============");
+            System.out.println("Tu opcion: ");
+            
+            try {
+            	exit = Integer.valueOf(sc.nextLine());
+            	if(exit != 0 && exit < 5) {
+            		System.out.println("Viendo "+movies.get(exit-1)+"...\n");
+            	} else if(exit > 5){
+            		System.out.println("**tu opcion es invalida**");
+            	}
+            	else {
+            		System.out.println("[Saliendo de menu movies]...");
+            		break;
+            	}
+            } catch (NumberFormatException e) {
+            	System.out.println("**Tu opcion es invalida**");
+			}
+        } while (true);
+        exit = 1;
     }
 
     private static void showSeries()
@@ -140,5 +171,9 @@ public class Main {
     private static void makeReport(Date date)
     {
 
+    }
+    
+    private static boolean validatingScannerInput() {
+    	return true;
     }
 }
