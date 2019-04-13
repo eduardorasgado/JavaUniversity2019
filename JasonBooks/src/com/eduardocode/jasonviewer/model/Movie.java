@@ -23,16 +23,7 @@ public class Movie extends Film implements IPlayable {
     }
 
     // overriding methods from a super class
-    @Override
-    public String toString()
-    {
-        // overriding toString from Object
-        return "Title: "+getTitle() +
-                "\nGenre: " + getGenre() +
-                "\nYear: " + getYear() +
-                "\nDirector: " + getDirector() +
-                "\nDuration: " + getDuration() + " minutes";
-    }
+    
 
     // overriding IPlayable methods
     @Override
@@ -43,11 +34,18 @@ public class Movie extends Film implements IPlayable {
     }
 
     @Override
-    public void stoptToSee(Date dateI, Date dateF) {
-        long result = (dateF.getTime() > dateI.getTime())
-                ? (dateF.getTime() - dateI.getTime() / 1000) : 0;
+	public String toString() {
+		return "Title=" + getTitle() + ", Genre="
+				+ getGenre() + ", \nDirector=" + getDirector() + ", \nDuration=" + getDuration() + ", \nYear="
+				+ getYear() + "\visto:"+(isViewed() ? "Si" : "No")+"\ntiempo visto en segundos:" + timeViewed; 
+	}
 
-        this.setTimeViewed((int)result);
+	@Override
+    public void stoptToSee(Date dateI, Date dateF) {
+        int result = (dateF.getTime() > dateI.getTime())
+                ? ((int)(dateF.getTime() - dateI.getTime()) / 1000) : 0;
+
+        this.setTimeViewed(result);
     }
     
     public static ArrayList<Movie> createMovieList() {

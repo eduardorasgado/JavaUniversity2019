@@ -102,7 +102,18 @@ public class Main {
             try {
             	exit = Integer.valueOf(sc.nextLine());
             	if(exit != 0 && exit < 5) {
-            		System.out.println("Viendo "+movies.get(exit-1)+"...\n");
+            		Movie movieSelected = movies.get(exit-1);
+            		System.out.println("Viendo "+movieSelected+"...\n");
+            		movieSelected.setViewed(true);
+            		Date dateI = movieSelected.startToSee(new Date());
+            		try {
+            			Thread.sleep(2000);
+            		} catch (Exception e) {
+            			e.printStackTrace();
+					}
+            		movieSelected.stoptToSee(dateI, new Date());
+            		
+            		System.out.println("Viste la pelicula:"+ movieSelected);
             	} else if(exit > 5){
             		System.out.println("**tu opcion es invalida**");
             	}
