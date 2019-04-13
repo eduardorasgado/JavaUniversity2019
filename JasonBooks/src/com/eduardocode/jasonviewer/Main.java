@@ -108,8 +108,8 @@ public class Main {
             		Date dateI = movieSelected.startToSee(new Date());
             		try {
             			Thread.sleep(2000);
-            		} catch (Exception e) {
-            			e.printStackTrace();
+            		} catch (InterruptedException e) {
+            			Thread.currentThread().interrupt();
 					}
             		movieSelected.stoptToSee(dateI, new Date());
             		
