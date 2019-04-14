@@ -16,6 +16,7 @@ public class MovieRepository {
 	
 	public MovieRepository() {
 		this.movies = new ArrayList<Movie>();
+		this.initMovieList();
 	}
 	
 	/**
@@ -63,5 +64,13 @@ public class MovieRepository {
 		} else {
 			return false;
 		}
+	}
+	
+	public void initMovieList() {
+		movies.add(new Movie("Moana", "Terror", "Terry Colby", 120, (short) 2017));
+    	movies.add(new Movie("Indestructibles", "Accion", "Terry Colby", 130, (short) 2017));
+    	movies.add(new Movie("King Kong 2", "Animales", "Steven Spielberg", 210, (short) 2018));
+    	movies.add(new Movie("Batman 2", "Heroes", "Patrick M.", 180, (short) 2018));
+    	movies.add(new Movie("Captain Marvel", "Aventuras", "Marvel Studios", 140, (short) 2019));
 	}
 }

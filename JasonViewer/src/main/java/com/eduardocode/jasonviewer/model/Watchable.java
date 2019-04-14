@@ -20,6 +20,14 @@ public abstract class Watchable {
 	private short year;
 	private boolean viewed;
 	
+	public Watchable() {
+		// default constructor
+	}
+	
+	public Watchable(String title, String genre, String director, int duration) {
+		//
+	}
+	
 	public String getIsViewed() {
 		String isViewed = (viewed) ? "Si" : "No";
 		return isViewed;

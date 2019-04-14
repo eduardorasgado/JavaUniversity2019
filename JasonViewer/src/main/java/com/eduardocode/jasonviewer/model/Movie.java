@@ -20,6 +20,14 @@ public class Movie extends Watchable implements IPlayable {
 	private int id;
 	private int timeViewed;
 	
+	
+	public Movie() {
+		// default constructor
+	}
+	
+	public Movie(String title, String genre, String director, int duration, short year) {
+		super();
+	}
 	/**
 	 * Metodo que se toma de la clase abstracta watchable
 	 * Describe la simulacion de la visualizacion de un recurso
