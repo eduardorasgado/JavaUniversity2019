@@ -3,7 +3,7 @@
  */
 package com.eduardocode.jasonviewer.model;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import lombok.Data;
 
@@ -18,10 +18,10 @@ public class Serie extends Watchable {
 	
 	private int id;
 	private int seasonQuantity;
-	private Set<Chapter> chapters;
+	private ArrayList<Chapter> chapters;
 
 	@Override
 	public void playResource() {
-		// TODO Auto-generated method stub		
+		this.chapters = new ArrayList<Chapter>();		
 	}
 }
