@@ -21,6 +21,7 @@ public class MovieService implements IWatchableService {
 	
 	/**
 	 * Actualiza los atributos respecto a tiempo y si una pelicula ya fue vista o no
+	 * tambien simula la visualizacion de una pelicula mediante el manejo de sleep
 	 * dado un indice
 	 */
 	public void playResource(int index) {	
@@ -28,11 +29,7 @@ public class MovieService implements IWatchableService {
 		
 		movieSelected.setViewed(true);
 		Date dateI = movieSelected.startToSee(new Date());
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+		this.simulateTimeLapse(2000);
 		movieSelected.stopToSee(dateI, new Date());
 		
 		// intercambiar la pelicula que modificamos por el nuevo elemento
@@ -45,6 +42,14 @@ public class MovieService implements IWatchableService {
 	 */
 	public ArrayList<Movie> getAll() {
 		return movieRepository.getAll();
+	}
+	
+	private void simulateTimeLapse(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 	
 }
