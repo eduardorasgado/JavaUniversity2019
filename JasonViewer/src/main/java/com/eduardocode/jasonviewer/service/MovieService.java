@@ -46,16 +46,29 @@ public class MovieService extends WatchableService implements IWatchableService<
 		return movieRepository.getAll();
 	}
 
+	/**
+	 * Encuentra y devuelve una pelicula a partir del indice en el que la pelicula
+	 * se encuentre dentro de la lista en el repositorio.
+	 * Si la pelicula no existe devuelve nulo
+	 */
 	@Override
 	public Movie findByIndex(int index) {
 		return movieRepository.findByIndex(index);
 	}
 	
+	/**
+	 * Devuelve el indice en la lista de peliculas del repositorio, dada una instancia
+	 * existente de pelicula. Si no existe devuelve -1
+	 */
 	@Override
 	public int getResourceIndex(Movie movie) {
 		return movieRepository.getResourceIndex(movie);
 	}
-
+	
+	/**
+	 * Elimina una pelicula de la lista del repositorio dado el indice en el que 
+	 * se encuentra esta pelicula
+	 */
 	@Override
 	public boolean delete(int index) {
 		boolean deleted = movieRepository.delete(index);

@@ -74,6 +74,9 @@ public class MovieRepository implements JVRepository<Movie> {
 		movies.add(movie);
 	}
 	
+	/**
+	 * Elimina una pelicula dada la existencia de un indice que ha sido tomado
+	 */
 	@Override
 	public boolean delete(int index) {
 		if((index >= 0) && (index < movies.size())) {
