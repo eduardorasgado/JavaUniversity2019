@@ -14,4 +14,5 @@ import lombok.Data;
 public class Chapter extends Movie{
 	private int id;
 	private int seasonNumber;
+	
 }

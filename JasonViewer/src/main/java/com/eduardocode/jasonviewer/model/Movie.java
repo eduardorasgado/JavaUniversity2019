@@ -25,8 +25,25 @@ public class Movie extends Watchable implements IPlayable {
 		// default constructor
 	}
 	
+	/**
+	 * Contructor para la herencia de Chapter
+	 * @param title
+	 * @param duration
+	 */
+	public Movie(String title, int duration) {
+		super(title, duration);
+	}
+	
+	/**
+	 * Constructor para la creacion de Movie
+	 * @param title
+	 * @param genre
+	 * @param director
+	 * @param duration
+	 * @param year
+	 */
 	public Movie(String title, String genre, String director, int duration, short year) {
-		super();
+		super(title, genre, director, duration, year);
 	}
 	/**
 	 * Metodo que se toma de la clase abstracta watchable

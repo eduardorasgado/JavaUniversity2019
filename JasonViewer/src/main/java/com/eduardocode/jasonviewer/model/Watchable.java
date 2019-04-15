@@ -24,8 +24,16 @@ public abstract class Watchable {
 		// default constructor
 	}
 	
-	public Watchable(String title, String genre, String director, int duration) {
-		//
+	public Watchable(String title, int duration) {
+		this.title = title;
+		this.duration = duration;
+	}
+	
+	public Watchable(String title, String genre, String director, int duration, short year) {
+		this.title = title;
+		this.genre = genre;
+		this.director = director;
+		this.duration = duration;
 	}
 	
 	public String getIsViewed() {
@@ -33,5 +41,9 @@ public abstract class Watchable {
 		return isViewed;
 	}
 	
+	/**
+	 * Permite la implementacion de la simulacion de visualizacion de cada
+	 * recurso que herede de la clase Watchable
+	 */
 	public abstract void playResource();
 }
