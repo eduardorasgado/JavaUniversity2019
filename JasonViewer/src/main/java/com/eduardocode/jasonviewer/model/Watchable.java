@@ -4,7 +4,6 @@
 package com.eduardocode.jasonviewer.model;
 
 import lombok.Data;
-import lombok.Getter;
 
 /**
  * Clase abstracta que representa tres clases hijas: serie, chapter y movie

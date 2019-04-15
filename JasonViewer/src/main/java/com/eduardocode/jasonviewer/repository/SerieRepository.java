@@ -15,10 +15,12 @@ import com.eduardocode.jasonviewer.model.Serie;
  *
  */
 public class SerieRepository implements JVRepository<Serie>{
-	ArrayList<Serie> series = null;
+	private ArrayList<Serie> seriesList = null;
 	
 	public SerieRepository() {
-		series = new ArrayList<Serie>();
+		System.out.println("Serie repo created-----------------------");
+		this.seriesList = new ArrayList<Serie>();
+		this.initSerieList();
 	}
 	
 	/**
@@ -26,7 +28,7 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public ArrayList<Serie> getAll() {
-		return series;
+		return this.seriesList;
 	}
 	
 	/**
@@ -36,8 +38,8 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public Serie findByIndex(int index) {
-		if(index >= 0 && index < series.size()) {
-			return series.get(index);
+		if(index >= 0 && index < seriesList.size()) {
+			return seriesList.get(index);
 		} else {
 			return null;
 		}
@@ -49,9 +51,9 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public int getResourceIndex(Serie serie) {
-		for(int i = 0;i < series.size(); i++) {
+		for(int i = 0;i < seriesList.size(); i++) {
 
-			String dbRTitle = series.get(i).getTitle();
+			String dbRTitle = seriesList.get(i).getTitle();
 			String givenRTitle = serie.getTitle();
 			
 			if(dbRTitle.equals(givenRTitle)) {
@@ -68,7 +70,7 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public void insert(Serie serie) {
-		series.add(serie);
+		seriesList.add(serie);
 	}
 
 	/**
@@ -77,8 +79,8 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public boolean update(int index, Serie serie) {
-		if(index >= 0 && index < series.size()) {
-			series.set(index, serie);
+		if(index >= 0 && index < seriesList.size()) {
+			seriesList.set(index, serie);
 			return true;
 		} else {
 			return false;
@@ -90,8 +92,8 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public boolean delete(int index) {
-		if(index >= 0 && index < series.size()) {
-			series.remove(index);
+		if(index >= 0 && index < seriesList.size()) {
+			seriesList.remove(index);
 			return true;
 		} else {
 			return false;
@@ -102,33 +104,44 @@ public class SerieRepository implements JVRepository<Serie>{
 	 * Agrega  elementos a la lista que de series
 	 */
 	public void initSerieList() {
-		this.series.add(new Serie("Vikingos", "Historia", "History Chanel", (short) 2016));
-		this.series.add(new Serie("The walking Dead", "Terror", "Pedro Perez", (short) 2012));
-		this.series.add(new Serie("Nuestro Planeta", "Documental", "Netflix", (short) 2019));
-		this.series.add(new Serie("Spartacus", "Epocas Antiguas", "Netflix", (short) 2017));
-		this.series.add(new Serie("Yu gi oh", "Anime", "Takihiro Matzumoto", (short) 2005));
+		this.seriesList.add(new Serie("Vikingos", "Historia", "History Chanel", (short) 2016));
+		this.seriesList.add(new Serie("The walking Dead", "Terror", "Pedro Perez", (short) 2012));
+		this.seriesList.add(new Serie("Nuestro Planeta", "Documental", "Netflix", (short) 2019));
+		this.seriesList.add(new Serie("Spartacus", "Epocas Antiguas", "Netflix", (short) 2017));
+		this.seriesList.add(new Serie("Yu gi oh", "Anime", "Takihiro Matzumoto", (short) 2005));
 		
 		ArrayList<Chapter> chapters = new ArrayList<Chapter>();
 		int season = 1;
-		for(int i =1; i <= 20;i++) {
+		int indexSerie = 0;
+		for(int i =1; i <= 100;i++) {
 			Chapter chapter = new Chapter("Capitulo "+(i), 40);
+			chapter.setSeasonNumber(season);
+			Serie dummySerie = new Serie();
+			dummySerie.setTitle(this.seriesList.get(indexSerie).getTitle());
+			chapter.setSerie(dummySerie);
+			
+			chapters.add(chapter);
 			if(i % 5 == 0) {
 				// cada 5 capitulos se asigna una temporada
 				// en total hay 4 temporadas
-				chapter.setSeasonNumber(season);
 				season++;
 			}
-			chapters.add(chapter);
+			if(i % 20 == 0) {
+				indexSerie++;
+			}
 		}
 		
-		for(int i =0; i < series.size();i++) {
-			Serie serie = series.get(i);
+		for(int i =0; i < this.seriesList.size();i++) {
+			//System.out.println("index: "+i);
+			Serie serie = this.seriesList.get(i);
 			// cada uno con 4 temporadas
 			serie.setSeasonQuantity(4);
-			// incluir los capitulos para cada uno: total 20 caps
-			serie.setChapters(chapters);
+			ArrayList<Chapter> cs = 
+					new ArrayList<Chapter>(chapters.subList( (0+(i*20)), (20+(i*20)) ));
+			
+			serie.setChapters(cs);
 			// guardar la serie en el lugar de la lista que le corresponde
-			series.set(i, serie);
+			this.seriesList.set(i, serie);
 		}
 	}
 }
