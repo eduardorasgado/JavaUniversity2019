@@ -109,8 +109,15 @@ public class SerieRepository implements JVRepository<Serie>{
 		this.series.add(new Serie("Yu gi oh", "Anime", "Takihiro Matzumoto", (short) 2005));
 		
 		ArrayList<Chapter> chapters = new ArrayList<Chapter>();
-		for(int i =0; i < series.size();i++) {
-			Chapter chapter = new Chapter("Capitulo "+(i+1), 40);
+		int season = 1;
+		for(int i =1; i <= 20;i++) {
+			Chapter chapter = new Chapter("Capitulo "+(i), 40);
+			if(i % 5 == 0) {
+				// cada 5 capitulos se asigna una temporada
+				// en total hay 4 temporadas
+				chapter.setSeasonNumber(season);
+				season++;
+			}
 			chapters.add(chapter);
 		}
 		
@@ -118,7 +125,7 @@ public class SerieRepository implements JVRepository<Serie>{
 			Serie serie = series.get(i);
 			// cada uno con 4 temporadas
 			serie.setSeasonQuantity(4);
-			// incluir los capitulos para cada uno
+			// incluir los capitulos para cada uno: total 20 caps
 			serie.setChapters(chapters);
 			// guardar la serie en el lugar de la lista que le corresponde
 			series.set(i, serie);
