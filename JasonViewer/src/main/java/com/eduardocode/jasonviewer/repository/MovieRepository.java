@@ -28,6 +28,20 @@ public class MovieRepository {
 	}
 	
 	/**
+	 * Metodo que devuelve una pelicula dado su indice en la lista,
+	 * caso en que no exista este devuelve nulo
+	 * @param index
+	 * @return
+	 */
+	public Movie findByIndex(int index) {
+		if(index > 0 && index < movies.size()) {
+			return movies.get(index);
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Insertar una nueva pelicula en el repositorio
 	 * @param movie
 	 */
