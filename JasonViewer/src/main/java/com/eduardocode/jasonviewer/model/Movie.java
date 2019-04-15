@@ -51,8 +51,10 @@ public class Movie extends Watchable implements IPlayable {
 	 */
 	@Override
 	public void playResource() {
-		// TODO Auto-generated method stub
-		
+		/*metodo de demostracion de una implementacion de metodo abstracto
+		* dada una clase abstracta, este metodo se implementa realmente en
+		* el servicio de las peliculas
+		**/
 	}
 
 	/**

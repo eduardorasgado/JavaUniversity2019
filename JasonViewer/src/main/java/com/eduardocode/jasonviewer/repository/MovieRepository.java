@@ -42,6 +42,23 @@ public class MovieRepository {
 	}
 	
 	/**
+	 * retorna un entero que sera un indice dada una pelicula que se encuentre
+	 * en la lista
+	 * @param movie
+	 * @return
+	 */
+	public int getMovieIndex(Movie movie) {
+		for(int i = 0;i < movies.size(); i++) {
+			if(movies.get(i).equals(movie)) {
+				// retorna el indice de la pelicula dada
+				return i;
+			}
+		}
+		// pelicula no existente
+		return -1;
+	}
+	
+	/**
 	 * Insertar una nueva pelicula en el repositorio
 	 * @param movie
 	 */
