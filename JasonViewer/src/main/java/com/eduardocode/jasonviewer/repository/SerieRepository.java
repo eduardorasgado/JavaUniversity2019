@@ -13,7 +13,7 @@ import com.eduardocode.jasonviewer.model.Serie;
  * @author cheetos
  *
  */
-public class SerieRepository implements JVRepository{
+public class SerieRepository implements JVRepository<Serie>{
 	ArrayList<Serie> series = null;
 	
 	public SerieRepository() {
@@ -23,6 +23,7 @@ public class SerieRepository implements JVRepository{
 	/**
 	 * Devuelve todas las series que hay en la lista
 	 */
+	@Override
 	public ArrayList<Serie> getAll() {
 		return series;
 	}
@@ -32,11 +33,50 @@ public class SerieRepository implements JVRepository{
 	 * @param index
 	 * @return
 	 */
+	@Override
 	public Serie findByIndex(int index) {
 		if(index > 0 && index < series.size()) {
 			return series.get(index);
 		} else {
 			return null;
+		}
+	}
+
+	@Override
+	public int getResourceIndex(Serie serie) {
+		for(int i = 0; i < series.size(); i++) {
+			if(series.get(i).equals(serie)) {
+				// retornar el indice de la serie dada
+				return i;
+			}
+		}
+		// serie no existe
+		return -1;
+	}
+
+	@Override
+	public void insert(Serie serie) {
+		series.add(serie);
+	}
+
+	@Override
+	public boolean delete(Serie serie) {
+		// TODO: Hacer un testing de esta logica
+		if(series.contains(serie)) {
+			series.remove(serie);
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public boolean update(int index, Serie serie) {
+		if(index > 0 && index < series.size()) {
+			series.set(index, serie);
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

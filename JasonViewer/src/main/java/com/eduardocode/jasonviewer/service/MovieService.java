@@ -11,7 +11,7 @@ import com.eduardocode.jasonviewer.repository.MovieRepository;
  * @author cheetos
  *
  */
-public class MovieService extends WatchableService implements IWatchableService {
+public class MovieService extends WatchableService implements IWatchableService<Movie> {
 
 	private MovieRepository movieRepository;
 	
@@ -24,6 +24,7 @@ public class MovieService extends WatchableService implements IWatchableService 
 	 * tambien simula la visualizacion de una pelicula mediante el manejo de sleep
 	 * dado un indice
 	 */
+	@Override
 	public void playResource(int index) {	
 		Movie movieSelected = this.movieRepository.findByIndex(index);
 		
@@ -40,6 +41,7 @@ public class MovieService extends WatchableService implements IWatchableService 
 	 * Devuelve todas las peliculas actualmente registradas en la lista del repo
 	 * @return
 	 */
+	@Override
 	public ArrayList<Movie> getAll() {
 		return movieRepository.getAll();
 	}

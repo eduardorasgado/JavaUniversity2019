@@ -22,6 +22,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 * Devuelve todas las peliculas existentes en el repositorio
 	 * @return
 	 */
+	@Override
 	public ArrayList<Movie> getAll() {
 		return movies;
 	}
@@ -32,6 +33,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 * @param index
 	 * @return
 	 */
+	@Override
 	public Movie findByIndex(int index) {
 		if(index > 0 && index < movies.size()) {
 			return movies.get(index);
@@ -46,6 +48,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 * @param movie
 	 * @return
 	 */
+	@Override
 	public int getResourceIndex(Movie movie) {
 		for(int i = 0;i < movies.size(); i++) {
 			if(movies.get(i).equals(movie)) {
@@ -61,6 +64,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 * Insertar una nueva pelicula en el repositorio
 	 * @param movie
 	 */
+	@Override
 	public void insert(Movie movie) {
 		movies.add(movie);
 	}
@@ -70,6 +74,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 * @param movie
 	 * @return
 	 */
+	@Override
 	public boolean delete(Movie movie) {
 		for(Movie m : movies) {
 			if(m.equals(movie)) {
@@ -87,6 +92,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 * @param movie
 	 * @return
 	 */
+	@Override
 	public boolean update(int index, Movie movie) {
 		if(index > 0 && index < movies.size()) {
 			movies.set(index, movie);

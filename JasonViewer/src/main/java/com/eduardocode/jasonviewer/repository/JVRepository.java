@@ -2,6 +2,12 @@ package com.eduardocode.jasonviewer.repository;
 
 import java.util.ArrayList;
 
+/**
+ * Patron principal para todos los repositorios
+ * @author cheetos
+ *
+ * @param <T>
+ */
 public interface JVRepository<T> {
 
 	public ArrayList<T> getAll();

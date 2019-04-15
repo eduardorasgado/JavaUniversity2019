@@ -10,6 +10,10 @@ package com.eduardocode.jasonviewer.service;
  */
 public abstract class WatchableService {
 	
+	/**
+	 * Simula el tiempo en el que se ve o lee un recurso
+	 * @param time
+	 */
 	public void simulateTimeLapse(int time) {
 		try {
 			Thread.sleep(time);
