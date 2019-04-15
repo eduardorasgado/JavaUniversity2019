@@ -33,7 +33,7 @@ public class Serie extends Watchable {
 	public String toString() {
 		return "Serie [seasonQuantity=" + seasonQuantity + ", getTitle()=" + getTitle()
 				+ ", getGenre()=" + getGenre() + ", getDuration()=" + getDuration() 
-				+ ", isViewed()=" + isViewed() + ", chapters=" + chapters + "]";
+				+ ", isViewed()=" + getIsViewed() + ", chapters=" + chapters + "]";
 	}
 	
 	
