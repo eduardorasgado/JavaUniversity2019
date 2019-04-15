@@ -18,7 +18,7 @@ public interface JVRepository<T> {
 	
 	public void insert(T resource);
 	
-	public boolean delete(T resource);
+	public boolean delete(int index);
 	
 	public boolean update(int index, T resource);
 }

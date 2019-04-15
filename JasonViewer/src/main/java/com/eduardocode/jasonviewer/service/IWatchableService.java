@@ -13,5 +13,12 @@ public interface IWatchableService<T> {
 	
 	public ArrayList<T> getAll();
 	
-	// TODO: Implementacion de los metodos crud aqui
+	// metodos desarrollados solo para testing
+	
+	public int getResourceIndex(T resource);
+	
+	public T findByIndex(int index);
+	
+	public boolean delete(int index);
+	
 }

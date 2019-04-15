@@ -54,26 +54,35 @@ public class SerieRepository implements JVRepository<Serie>{
 		return -1;
 	}
 
+	/**
+	 * Inserta o crea un nuevo elemento dentro de la lista de series
+	 */
 	@Override
 	public void insert(Serie serie) {
 		series.add(serie);
 	}
 
-	@Override
-	public boolean delete(Serie serie) {
-		// TODO: Hacer un testing de esta logica
-		if(series.contains(serie)) {
-			series.remove(serie);
-			return true;
-		}
-		
-		return false;
-	}
-
+	/**
+	 * actualiza en elemento de la lista de series dado el indice y la misma
+	 * serie pero con atributos actualizados
+	 */
 	@Override
 	public boolean update(int index, Serie serie) {
 		if(index > 0 && index < series.size()) {
 			series.set(index, serie);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Elimina un elemento dentro de la serie dado un indice
+	 */
+	@Override
+	public boolean delete(int index) {
+		if(index > 0 && index < series.size()) {
+			series.remove(index);
 			return true;
 		} else {
 			return false;

@@ -45,5 +45,21 @@ public class MovieService extends WatchableService implements IWatchableService<
 	public ArrayList<Movie> getAll() {
 		return movieRepository.getAll();
 	}
+
+	@Override
+	public Movie findByIndex(int index) {
+		return movieRepository.findByIndex(index);
+	}
+	
+	@Override
+	public int getResourceIndex(Movie movie) {
+		return movieRepository.getResourceIndex(movie);
+	}
+
+	@Override
+	public boolean delete(int index) {
+		boolean deleted = movieRepository.delete(index);
+		return deleted;
+	}
 	
 }

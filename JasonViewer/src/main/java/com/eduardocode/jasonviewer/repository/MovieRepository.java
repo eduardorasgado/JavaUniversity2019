@@ -36,6 +36,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	@Override
 	public Movie findByIndex(int index) {
 		if(index > 0 && index < movies.size()) {
+			//System.out.println("pelicula encontrada es: "+movies.get(index));
 			return movies.get(index);
 		} else {
 			return null;
@@ -69,22 +70,18 @@ public class MovieRepository implements JVRepository<Movie> {
 		movies.add(movie);
 	}
 	
-	/**
-	 * Eliminar una pelicula existente en el repositorio
-	 * @param movie
-	 * @return
-	 */
 	@Override
-	public boolean delete(Movie movie) {
-		for(Movie m : movies) {
-			if(m.equals(movie)) {
-				// si la pelicula existe entonces es eliminada
-				movies.remove(movie);
+	public boolean delete(int index) {
+		if((index > 0) && (index < movies.size())) {
+				//System.out.println("pelicula a eliminar(repo) indice:"+index);
+				movies.remove(index);
 				return true;
-			}
 		}
+		//System.out.println("No se elimmino pelicula");
 		return false;
 	}
+	
+	
 	
 	/**
 	 * reemplaza una pelicula por otra en un indice determinado del arreglo

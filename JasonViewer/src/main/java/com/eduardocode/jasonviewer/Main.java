@@ -20,10 +20,20 @@ public class Main {
 		System.out.println("Viendo una pelicula...\n");
 		movieService.playResource(2);
 		
-		movies = movieService.getAll();
-		movies.forEach((Movie m) -> {
+		// TODO: testing de eliminacion de una pelicula
+		System.out.println("Buscando pelicula");
+		Movie movieToDelete = movieService.findByIndex(1);
+		
+		movieService.getResourceIndex(movieToDelete);
+		
+		movieService.delete(3);
+		
+		System.out.println("Pelicula eliminada");
+		
+		ArrayList<Movie> movies2 = movieService.getAll();
+		
+		movieService.getAll().forEach((Movie m) -> {
 			System.out.println("pelicula: "+m.getTitle()+", visto: "+m.getIsViewed());
 		});
-		
 	}
 }

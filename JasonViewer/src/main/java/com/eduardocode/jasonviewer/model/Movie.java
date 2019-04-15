@@ -74,4 +74,11 @@ public class Movie extends Watchable implements IPlayable {
 
         this.setTimeViewed(result);
 	}
+
+	@Override
+	public String toString() {
+		return "Movie [id=" + id + ", timeViewed=" + timeViewed + ", getTitle()=" + getTitle() + "]";
+	}
+	
+	
 }
