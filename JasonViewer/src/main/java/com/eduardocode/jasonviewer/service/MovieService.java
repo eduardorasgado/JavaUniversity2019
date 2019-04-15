@@ -74,5 +74,10 @@ public class MovieService extends WatchableService implements IWatchableService<
 		boolean deleted = movieRepository.delete(index);
 		return deleted;
 	}
+
+	@Override
+	public boolean update(int index, Movie movie) {
+		return movieRepository.update(index, movie);
+	}
 	
 }

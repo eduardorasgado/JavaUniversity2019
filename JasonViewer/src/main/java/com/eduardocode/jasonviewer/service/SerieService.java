@@ -56,4 +56,14 @@ public class SerieService implements IWatchableService<Serie> {
 		return serieRepository.delete(index);
 	}
 
+	/**
+	 * Actualiza un elemento existente de la lista en los repositorios de serie
+	 */
+	@Override
+	public boolean update(int index, Serie serie) {
+		return serieRepository.update(index, serie);
+	}
+	
+	
+
 }

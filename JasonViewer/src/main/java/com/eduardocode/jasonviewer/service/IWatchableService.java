@@ -17,6 +17,8 @@ public interface IWatchableService<T> {
 	
 	public T findByIndex(int index);
 	
+	public boolean update(int index, T resource);
+	
 	public boolean delete(int index);
 	
 }
