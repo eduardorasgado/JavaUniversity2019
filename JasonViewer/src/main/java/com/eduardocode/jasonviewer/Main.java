@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.eduardocode.jasonviewer.model.Chapter;
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.model.Serie;
+import com.eduardocode.jasonviewer.service.ChapterService;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.service.SerieService;
 
@@ -15,6 +16,7 @@ public class Main {
 		
 		MovieService movieService = new MovieService();
 		SerieService serieService = new SerieService();
+		ChapterService chapterService = new ChapterService();
 		
 		// TESTEANDO MOVIES
 		System.out.println("\n\n MOVIES");
@@ -56,7 +58,17 @@ public class Main {
 				System.out.println("chapter name: "+c.getTitle()+", serie: "+c.getSerie().getTitle());
 			}
 		});
+		System.out.println("\n");
 		
+		Serie s2 = serieService.getAll().get(0);
+		Chapter c2 = s2.getChapters().get(2);
+		System.out.println("chapter en service: "+ c2.getTitle()+", visto: "+ c2.getIsViewed());
+		serieService = chapterService.playResource(serieService, 2, s2);
+		System.out.println("Serie vista...");
+		
+		for(Chapter c : serieService.getAll().get(0).getChapters()) {
+			System.out.println("chapter en service: "+ c.getTitle()+", visto: "+ c.getIsViewed());
+		}
 		
 	}
 }
