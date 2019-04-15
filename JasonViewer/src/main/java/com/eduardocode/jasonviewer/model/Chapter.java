@@ -14,6 +14,7 @@ import lombok.Data;
 public class Chapter extends Movie{
 	private int id;
 	private int seasonNumber;
+	private Serie serie;
 	
 	public Chapter(String title, int duration) {
 		super(title, duration);
@@ -28,5 +29,13 @@ public class Chapter extends Movie{
 		// una serie se marca en visto cuando se termina de ver todos los chapters
 		// un capitulo se marca como visto
 	}
+	@Override
+	public String toString() {
+		return "Chapter [seasonNumber=" + seasonNumber + ", serie=" + serie.getTitle() 
+				+ ", getIsViewed()=" + getIsViewed()
+				+ ", getTitle()=" + getTitle() + "]";
+	}
+	
+	
 	
 }
