@@ -12,7 +12,7 @@ import com.eduardocode.jasonviewer.model.Movie;
  *
  */
 public class MovieRepository {
-	private ArrayList<Movie> movies;
+	private ArrayList<Movie> movies = null;
 	
 	public MovieRepository() {
 		this.movies = new ArrayList<Movie>();

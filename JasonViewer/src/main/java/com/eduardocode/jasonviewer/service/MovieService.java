@@ -11,7 +11,7 @@ import com.eduardocode.jasonviewer.repository.MovieRepository;
  * @author cheetos
  *
  */
-public class MovieService implements IWatchableService {
+public class MovieService extends WatchableService implements IWatchableService {
 
 	private MovieRepository movieRepository;
 	
@@ -42,14 +42,6 @@ public class MovieService implements IWatchableService {
 	 */
 	public ArrayList<Movie> getAll() {
 		return movieRepository.getAll();
-	}
-	
-	private void simulateTimeLapse(int time) {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
 	}
 	
 }

@@ -6,8 +6,6 @@ package com.eduardocode.jasonviewer.model;
 import java.util.Date;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * Representacion de una pelicula en la aplicacion
