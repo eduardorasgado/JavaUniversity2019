@@ -114,6 +114,11 @@ public class SerieRepository implements JVRepository<Serie>{
 		int season = 1;
 		int indexSerie = 0;
 		for(int i =1; i <= 100;i++) {
+			if(season == 5) {
+				// reiniciando el flag para la temporada de los chapters
+				season = 1;
+			}
+			
 			Chapter chapter = new Chapter("Capitulo "+(i), 40);
 			chapter.setSeasonNumber(season);
 			Serie dummySerie = new Serie();
@@ -125,6 +130,7 @@ public class SerieRepository implements JVRepository<Serie>{
 				// cada 5 capitulos se asigna una temporada
 				// en total hay 4 temporadas
 				season++;
+				
 			}
 			if(i % 20 == 0) {
 				indexSerie++;
