@@ -35,7 +35,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 */
 	@Override
 	public Movie findByIndex(int index) {
-		if(index > 0 && index < movies.size()) {
+		if(index >= 0 && index < movies.size()) {
 			//System.out.println("pelicula encontrada es: "+movies.get(index));
 			return movies.get(index);
 		} else {
@@ -52,7 +52,11 @@ public class MovieRepository implements JVRepository<Movie> {
 	@Override
 	public int getResourceIndex(Movie movie) {
 		for(int i = 0;i < movies.size(); i++) {
-			if(movies.get(i).equals(movie)) {
+
+			String dbRTitle = movies.get(i).getTitle();
+			String givenRTitle = movie.getTitle();
+			
+			if(dbRTitle.equals(givenRTitle)) {
 				// retorna el indice de la pelicula dada
 				return i;
 			}
@@ -72,7 +76,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	
 	@Override
 	public boolean delete(int index) {
-		if((index > 0) && (index < movies.size())) {
+		if((index >= 0) && (index < movies.size())) {
 				//System.out.println("pelicula a eliminar(repo) indice:"+index);
 				movies.remove(index);
 				return true;
@@ -91,7 +95,7 @@ public class MovieRepository implements JVRepository<Movie> {
 	 */
 	@Override
 	public boolean update(int index, Movie movie) {
-		if(index > 0 && index < movies.size()) {
+		if(index >= 0 && index < movies.size()) {
 			movies.set(index, movie);
 			return true;
 		} else {

@@ -35,7 +35,7 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public Serie findByIndex(int index) {
-		if(index > 0 && index < series.size()) {
+		if(index >= 0 && index < series.size()) {
 			return series.get(index);
 		} else {
 			return null;
@@ -44,9 +44,13 @@ public class SerieRepository implements JVRepository<Serie>{
 
 	@Override
 	public int getResourceIndex(Serie serie) {
-		for(int i = 0; i < series.size(); i++) {
-			if(series.get(i).equals(serie)) {
-				// retornar el indice de la serie dada
+		for(int i = 0;i < series.size(); i++) {
+
+			String dbRTitle = series.get(i).getTitle();
+			String givenRTitle = serie.getTitle();
+			
+			if(dbRTitle.equals(givenRTitle)) {
+				// retorna el indice de la pelicula dada
 				return i;
 			}
 		}
@@ -68,7 +72,7 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public boolean update(int index, Serie serie) {
-		if(index > 0 && index < series.size()) {
+		if(index >= 0 && index < series.size()) {
 			series.set(index, serie);
 			return true;
 		} else {
@@ -81,7 +85,7 @@ public class SerieRepository implements JVRepository<Serie>{
 	 */
 	@Override
 	public boolean delete(int index) {
-		if(index > 0 && index < series.size()) {
+		if(index >= 0 && index < series.size()) {
 			series.remove(index);
 			return true;
 		} else {

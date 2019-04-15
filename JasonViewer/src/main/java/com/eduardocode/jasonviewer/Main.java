@@ -10,6 +10,8 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("[BIENVENID@ A JASONVIEWER]");
 		
+		// TESTEANDO MOVIES
+		
 		MovieService movieService = new MovieService();
 		
 		ArrayList<Movie> movies = movieService.getAll();
@@ -22,15 +24,13 @@ public class Main {
 		
 		// TODO: testing de eliminacion de una pelicula
 		System.out.println("Buscando pelicula");
-		Movie movieToDelete = movieService.findByIndex(1);
+		Movie movieToDelete = movieService.findByIndex(4);
 		
-		movieService.getResourceIndex(movieToDelete);
+		int index = movieService.getResourceIndex(movieToDelete);
 		
-		movieService.delete(3);
-		
-		System.out.println("Pelicula eliminada");
-		
-		ArrayList<Movie> movies2 = movieService.getAll();
+		if(movieService.delete(index)) {
+			System.out.println("Pelicula eliminada");
+		}
 		
 		movieService.getAll().forEach((Movie m) -> {
 			System.out.println("pelicula: "+m.getTitle()+", visto: "+m.getIsViewed());
