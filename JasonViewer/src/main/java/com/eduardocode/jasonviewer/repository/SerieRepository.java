@@ -5,6 +5,7 @@ package com.eduardocode.jasonviewer.repository;
 
 import java.util.ArrayList;
 
+import com.eduardocode.jasonviewer.model.Chapter;
 import com.eduardocode.jasonviewer.model.Serie;
 
 /**
@@ -42,6 +43,10 @@ public class SerieRepository implements JVRepository<Serie>{
 		}
 	}
 
+	/**
+	 * Devuelve el indice de una serie dada una instancia de serie que
+	 * existe en la lista de series
+	 */
 	@Override
 	public int getResourceIndex(Serie serie) {
 		for(int i = 0;i < series.size(); i++) {
@@ -90,6 +95,33 @@ public class SerieRepository implements JVRepository<Serie>{
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	/**
+	 * Agrega  elementos a la lista que de series
+	 */
+	public void initSerieList() {
+		this.series.add(new Serie("Vikingos", "Historia", "History Chanel", (short) 2016));
+		this.series.add(new Serie("The walking Dead", "Terror", "Pedro Perez", (short) 2012));
+		this.series.add(new Serie("Nuestro Planeta", "Documental", "Netflix", (short) 2019));
+		this.series.add(new Serie("Spartacus", "Epocas Antiguas", "Netflix", (short) 2017));
+		this.series.add(new Serie("Yu gi oh", "Anime", "Takihiro Matzumoto", (short) 2005));
+		
+		ArrayList<Chapter> chapters = new ArrayList<Chapter>();
+		for(int i =0; i < series.size();i++) {
+			Chapter chapter = new Chapter("Capitulo "+(i+1), 40);
+			chapters.add(chapter);
+		}
+		
+		for(int i =0; i < series.size();i++) {
+			Serie serie = series.get(i);
+			// cada uno con 4 temporadas
+			serie.setSeasonQuantity(4);
+			// incluir los capitulos para cada uno
+			serie.setChapters(chapters);
+			// guardar la serie en el lugar de la lista que le corresponde
+			series.set(i, serie);
 		}
 	}
 }

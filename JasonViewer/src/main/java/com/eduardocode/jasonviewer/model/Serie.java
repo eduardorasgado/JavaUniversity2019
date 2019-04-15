@@ -20,8 +20,21 @@ public class Serie extends Watchable {
 	private int seasonQuantity;
 	private ArrayList<Chapter> chapters;
 
+	public Serie(String nombre, String genre, String director, short year) {
+		super(nombre, genre, director, year);
+	}
+	
 	@Override
 	public void playResource() {
 		this.chapters = new ArrayList<Chapter>();		
 	}
+
+	@Override
+	public String toString() {
+		return "Serie [seasonQuantity=" + seasonQuantity + ", getTitle()=" + getTitle()
+				+ ", getGenre()=" + getGenre() + ", getDuration()=" + getDuration() 
+				+ ", isViewed()=" + isViewed() + ", chapters=" + chapters + "]";
+	}
+	
+	
 }

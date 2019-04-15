@@ -29,11 +29,19 @@ public abstract class Watchable {
 		this.duration = duration;
 	}
 	
+	public Watchable(String title, String genre, String director, short year) {
+		this.title = title;
+		this.genre = genre;
+		this.director = director;
+		this.year = year;
+	}
+	
 	public Watchable(String title, String genre, String director, int duration, short year) {
 		this.title = title;
 		this.genre = genre;
 		this.director = director;
 		this.duration = duration;
+		this.year = year;
 	}
 	
 	public String getIsViewed() {

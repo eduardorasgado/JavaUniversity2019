@@ -35,5 +35,7 @@ public class Main {
 		movieService.getAll().forEach((Movie m) -> {
 			System.out.println("pelicula: "+m.getTitle()+", visto: "+m.getIsViewed());
 		});
+		
+		// TESTEANDO SERIES
 	}
 }
