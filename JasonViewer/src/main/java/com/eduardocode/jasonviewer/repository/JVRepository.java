@@ -2,8 +2,17 @@ package com.eduardocode.jasonviewer.repository;
 
 import java.util.ArrayList;
 
-public interface JVRepository {
+public interface JVRepository<T> {
 
-	public ArrayList<?> getAll();
+	public ArrayList<T> getAll();
 	
+	public T findByIndex(int index);
+	
+	public int getResourceIndex(T resource);
+	
+	public void insert(T resource);
+	
+	public boolean delete(T resource);
+	
+	public boolean update(int index, T resource);
 }

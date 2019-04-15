@@ -23,6 +23,8 @@ public class Chapter extends Movie{
 	public void playResource() {
 		// TODO Auto-generated method stub
 		super.playResource();
+		// una serie se marca en visto cuando se termina de ver todos los chapters
+		// un capitulo se marca como visto
 	}
 	
 }

@@ -1,7 +1,6 @@
 package com.eduardocode.jasonviewer.repository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.eduardocode.jasonviewer.model.Movie;
 
@@ -11,7 +10,7 @@ import com.eduardocode.jasonviewer.model.Movie;
  * @author cheetos
  *
  */
-public class MovieRepository {
+public class MovieRepository implements JVRepository<Movie> {
 	private ArrayList<Movie> movies = null;
 	
 	public MovieRepository() {
@@ -47,7 +46,7 @@ public class MovieRepository {
 	 * @param movie
 	 * @return
 	 */
-	public int getMovieIndex(Movie movie) {
+	public int getResourceIndex(Movie movie) {
 		for(int i = 0;i < movies.size(); i++) {
 			if(movies.get(i).equals(movie)) {
 				// retorna el indice de la pelicula dada
