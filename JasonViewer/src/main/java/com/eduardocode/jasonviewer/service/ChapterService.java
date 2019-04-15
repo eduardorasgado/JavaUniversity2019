@@ -34,7 +34,7 @@ public class ChapterService extends WatchableService{
 		chapterView.setViewed(true);
 		
 		// simulando el tiempo de vista
-		this.simulateTimeLapse(1000);
+		this.simulateTimeLapse(200);
 		
 		// reemplazar el capitulo actualizado en la lista de capitulos
 		chapters.set(chapterIndex, chapterView);

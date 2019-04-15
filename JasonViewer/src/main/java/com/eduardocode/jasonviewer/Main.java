@@ -61,14 +61,30 @@ public class Main {
 		System.out.println("\n");
 		
 		Serie s2 = serieService.getAll().get(0);
+		
+		System.out.println("Serie "+s2.getTitle()+" vista: "+s2.getIsViewed());
 		Chapter c2 = s2.getChapters().get(2);
 		System.out.println("chapter en service: "+ c2.getTitle()+", visto: "+ c2.getIsViewed());
 		serieService = chapterService.playResource(serieService, 2, s2);
 		System.out.println("Serie vista...");
 		
+		System.out.println("VIENDO UN CAPITULO");
 		for(Chapter c : serieService.getAll().get(0).getChapters()) {
 			System.out.println("chapter en service: "+ c.getTitle()+", visto: "+ c.getIsViewed());
 		}
+		
+		System.out.println("VIENDO TODOS LOS CAPITULOS");
+		for(int i = 0; i < s2.getChapters().size(); i++) {
+			// viendo todos los capitulos de una serie
+			serieService = chapterService.playResource(serieService, i, s2);
+		}
+		
+		for(Chapter c : serieService.getAll().get(0).getChapters()) {
+			System.out.println("chapter en service: "+ c.getTitle()+", visto: "+ c.getIsViewed());
+		}
+		
+		System.out.println("Serie "+s2.getTitle()+" vista: "+s2.getIsViewed());
+		
 		
 	}
 }
