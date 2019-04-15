@@ -4,6 +4,7 @@
 package com.eduardocode.jasonviewer.model;
 
 import lombok.Data;
+import lombok.Getter;
 
 /**
  * Clase abstracta que representa tres clases hijas: serie, chapter y movie
@@ -45,8 +46,11 @@ public abstract class Watchable {
 	}
 	
 	public String getIsViewed() {
-		String isViewed = (viewed) ? "Si" : "No";
-		return isViewed;
+		return (this.viewed) ? "Si" : "No";
+	}
+	
+	public boolean getViewed() {
+		return this.viewed;
 	}
 	
 	/**
