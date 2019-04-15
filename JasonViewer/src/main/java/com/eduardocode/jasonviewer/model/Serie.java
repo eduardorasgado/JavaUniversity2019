@@ -20,6 +20,9 @@ public class Serie extends Watchable {
 	private int seasonQuantity;
 	private ArrayList<Chapter> chapters;
 
+	public Serie() {
+		// default constructor
+	}
 	public Serie(String nombre, String genre, String director, short year) {
 		super(nombre, genre, director, year);
 	}

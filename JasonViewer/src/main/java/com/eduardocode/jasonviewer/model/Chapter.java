@@ -25,13 +25,12 @@ public class Chapter extends Movie{
 	 */
 	@Override
 	public void playResource() {
-		super.playResource();
 		// una serie se marca en visto cuando se termina de ver todos los chapters
 		// un capitulo se marca como visto
 	}
 	@Override
 	public String toString() {
-		return "Chapter [seasonNumber=" + seasonNumber + ", serie=" + serie.getTitle() 
+		return "Chapter [seasonNumber=" + seasonNumber
 				+ ", getIsViewed()=" + getIsViewed()
 				+ ", getTitle()=" + getTitle() + "]";
 	}
