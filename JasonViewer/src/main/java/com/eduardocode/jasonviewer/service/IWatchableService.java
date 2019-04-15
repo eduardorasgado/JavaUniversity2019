@@ -9,8 +9,6 @@ import java.util.ArrayList;
  */
 public interface IWatchableService<T> {
 	
-	public void playResource(int index);
-	
 	public ArrayList<T> getAll();
 	
 	// metodos desarrollados solo para testing

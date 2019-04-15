@@ -19,16 +19,10 @@ public class SerieService implements IWatchableService<Serie> {
 	public SerieService() {
 		this.serieRepository = new SerieRepository();
 	}
-	@Override
-	public void playResource(int index) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public ArrayList<Serie> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return serieRepository.getAll();
 	}
 
 	@Override

@@ -10,6 +10,8 @@ package com.eduardocode.jasonviewer.service;
  */
 public abstract class WatchableService {
 	
+	public abstract void playResource(int index);
+	
 	/**
 	 * Simula el tiempo en el que se ve o lee un recurso
 	 * @param time
