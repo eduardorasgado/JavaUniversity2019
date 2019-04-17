@@ -42,6 +42,8 @@ public class Book extends Readable implements IReadable{
 		
 	}
 	
-	
+	public String getIsRead() {
+		return this.read ? "Si" : "No"; 
+	}
 
 }
