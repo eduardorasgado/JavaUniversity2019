@@ -4,6 +4,11 @@ import java.util.Date;
 
 import lombok.Data;
 
+/**
+ * Representa un modelo de libro, extiende de readable
+ * @author cheetos
+ *
+ */
 @Data
 public class Book extends Readable{
 	

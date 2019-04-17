@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import com.eduardocode.jasonviewer.model.Book;
 
+/**
+ * Repositorio que controla todas las operaciones o transacciones entre la base 
+ * de datos o lista que contiene todos los libros con los que se cuenta en la
+ * aplicacion y el servicio de los libros en la logica de negocio
+ * @author cheetos
+ *
+ */
 public class BookRepository implements JVRepository<Book> {
 
 	private ArrayList<Book> books = null;
@@ -12,11 +19,17 @@ public class BookRepository implements JVRepository<Book> {
 		books = new ArrayList<Book>();
 	}
 	
+	/**
+	 * Devuelve todos los libros del repositorio
+	 */
 	@Override
 	public ArrayList<Book> getAll() {
 		return books;
 	}
 
+	/**
+	 * devuelve una entidad de libro existente en el repositorio dado un indice
+	 */
 	@Override
 	public Book findByIndex(int index) {
 		if(index >=0 && index < books.size()) {
@@ -26,6 +39,10 @@ public class BookRepository implements JVRepository<Book> {
 		}
 	}
 
+	/**
+	 * devuelve el indice de un libro determinado dentro del repositorio, 
+	 * dada la instancia del libro
+	 */
 	@Override
 	public int getResourceIndex(Book book) {
 		for(int i = 0;i < books.size(); i++) {
@@ -36,6 +53,10 @@ public class BookRepository implements JVRepository<Book> {
 		return -1;
 	}
 
+	/**
+	 * Crea un nuevo libro dentro del repositorio a partir de una entidad 
+	 * proporcionada
+	 */
 	@Override
 	public void insert(Book book) {
 		if(book != null) {
@@ -44,6 +65,10 @@ public class BookRepository implements JVRepository<Book> {
 		
 	}
 
+	/**
+	 * Elimina un libro existente en el repositorio de libros, dado el indice de
+	 * este
+	 */
 	@Override
 	public boolean delete(int index) {
 		if(index >=0 && index < books.size()) {
@@ -54,6 +79,10 @@ public class BookRepository implements JVRepository<Book> {
 		}
 	}
 
+	/**
+	 * Actualiza un libro dentro del repositorio, dado el indice de este libro
+	 * y la instancia de este con los datos actualizados
+	 */
 	@Override
 	public boolean update(int index, Book book) {
 		if((index >= 0 && index < books.size()) && book != null) {

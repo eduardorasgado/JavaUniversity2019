@@ -5,6 +5,12 @@ import java.util.Date;
 
 import lombok.Data;
 
+/**
+ * Clase que representa el model del que heredan todas aquellas clases que se lean
+ * 
+ * @author cheetos
+ *
+ */
 @Data
 public class Readable {
 	private int id;
