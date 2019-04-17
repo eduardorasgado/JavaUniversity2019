@@ -5,6 +5,11 @@ package com.eduardocode.jasonviewer.view;
 
 import java.util.Scanner;
 
+import com.eduardocode.jasonviewer.service.BookService;
+import com.eduardocode.jasonviewer.service.ChapterService;
+import com.eduardocode.jasonviewer.service.MovieService;
+import com.eduardocode.jasonviewer.service.SerieService;
+
 import lombok.Data;
 
 /**
@@ -17,9 +22,22 @@ public class UserInterface {
 	private Scanner sc = null;
 	private boolean closeApp;
 	
-	public UserInterface() {
+	private  MovieService movieService;
+	private SerieService serieService;
+	private ChapterService chapterService;
+	private BookService bookService;
+	
+	// representa el limite superior para la validacion de la entrada del
+	// menu principal
+	private final int MAINMAXOPTION;
+	
+	public UserInterface(MovieService movieService,
+							SerieService serieService, 
+							ChapterService chapterService,
+							BookService bookService, int mainmaxoption) {
 		sc = new Scanner(System.in);
 		this.closeApp = false;
+		this.MAINMAXOPTION = mainmaxoption;
 	}
 	
 	/**
@@ -49,9 +67,13 @@ public class UserInterface {
 			System.out.println("Escriba su opcion: ");
 			try {
 				int opcion = Integer.valueOf(sc.nextLine()); // lo que el usuario introduzca en la consola
-				return opcion;
+				if(this.validatingMainMenuInput(opcion)) {
+					return opcion;
+				} else {
+					this.showNotPassedValidationMessage();
+				}
 			} catch (NumberFormatException e) {
-				System.out.println("Selecciona una opcion, tu opcion no es valida");
+				this.showNotPassedValidationMessage();
 			}
 		}
 	}
@@ -68,5 +90,24 @@ public class UserInterface {
 			System.out.println("Exelente dia, bye!");
 			this.closeApp = true;
 		}
+	}
+	
+	/**
+	 * valida si la entrada del usuario esta entre los limites numericos permitidos
+	 * @param opcion
+	 * @return
+	 */
+	public boolean validatingMainMenuInput(int opcion) {
+		if(opcion >= 0 && opcion <= this.MAINMAXOPTION) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Muestra un mensaje de error generico
+	 */
+	public void showNotPassedValidationMessage() {
+		System.out.println("Selecciona una opcion, tu opcion no es valida");
 	}
 }

@@ -1,11 +1,5 @@
 package com.eduardocode.jasonviewer;
 
-import java.util.ArrayList;
-
-import com.eduardocode.jasonviewer.model.Book;
-import com.eduardocode.jasonviewer.model.Chapter;
-import com.eduardocode.jasonviewer.model.Movie;
-import com.eduardocode.jasonviewer.model.Serie;
 import com.eduardocode.jasonviewer.service.BookService;
 import com.eduardocode.jasonviewer.service.ChapterService;
 import com.eduardocode.jasonviewer.service.MovieService;
@@ -21,7 +15,13 @@ public class Main {
 		ChapterService chapterService = new ChapterService();
 		BookService bookService = new BookService();
 		
-		UserInterface ui = new UserInterface();
+		UserInterface ui = new UserInterface(
+				movieService,
+				serieService,
+				chapterService,
+				bookService,
+				6
+				);
 		while(true) {
 			ui.applicationLoop();
 			if(ui.isCloseApp()) {
