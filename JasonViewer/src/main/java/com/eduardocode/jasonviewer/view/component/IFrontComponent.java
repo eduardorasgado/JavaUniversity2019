@@ -23,6 +23,7 @@ public interface IFrontComponent<Entity, EntityService> {
 	/**
 	 * visualizacion de la lista de todos los recursos existentes
 	 */
-	public void showMenu();
+	void showMenu();
 	
+	void showResourcePlayer(int option);
 }

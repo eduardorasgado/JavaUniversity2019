@@ -8,7 +8,6 @@ import com.eduardocode.jasonviewer.view.UserInterface;
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("[BIENVENID@ A JASONVIEWER]");
 		
 		MovieService movieService = new MovieService();
 		SerieService serieService = new SerieService();
