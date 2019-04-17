@@ -7,7 +7,19 @@ package com.eduardocode.jasonviewer.view.component;
  *
  * @param <T>
  */
-public interface IFrontComponent<T> {
+public interface IFrontComponent<Entity, EntityService> {
+	
+	/**
+	 * Define la posibilidad de implemetar un servicio principal sobre el cual
+	 * el componente va a trabajar
+	 * @param resourceService
+	 */
+	public void setService(EntityService resourceService);
+	
+	/**
+	 * Loop principal de la interaccion entre el usuario y los recursos
+	 */
+	public void interact();
 	/**
 	 * visualizacion de la lista de todos los recursos existentes
 	 */
