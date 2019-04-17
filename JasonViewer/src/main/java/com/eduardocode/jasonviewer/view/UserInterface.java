@@ -3,6 +3,7 @@
  */
 package com.eduardocode.jasonviewer.view;
 
+import java.util.Date;
 import java.util.Scanner;
 
 import com.eduardocode.jasonviewer.service.BookService;
@@ -44,7 +45,7 @@ public class UserInterface {
 	 * Muestra la lista de las posibles opciones que tiene el usuario para leer
 	 * o ver
 	 */
-	public void showMenu() {
+	private void showMenu() {
 		System.out.println("\n[WELCOME TO JASON VIEWER]");
         System.out.println("");
         System.out.println("Selecciona la opcion a la que deseas accesar.");
@@ -62,7 +63,7 @@ public class UserInterface {
 	 * esta pasa la validacion
 	 * @return
 	 */
-	public int getInputAndValidating() {
+	private int getInputAndValidating() {
 		while(true) {
 			System.out.println("Escriba su opcion: ");
 			try {
@@ -86,18 +87,57 @@ public class UserInterface {
 	public void applicationLoop() {
 		this.showMenu();
 		int opcion = this.getInputAndValidating();
+		
 		if(opcion == 0) {
 			System.out.println("Exelente dia, bye!");
 			this.closeApp = true;
+		}else {
+			this.specificMenuSelector(opcion);
 		}
 	}
+	
+	/**
+	 * Metodo para redireccionar del menu principal a uno de todos los menus para
+	 * la seleccion del recurso que el usuario desee ver
+	 */
+	private void specificMenuSelector(int opcion) {	
+		switch (opcion) {
+	        case 1:
+	            System.out.println("viendo peliculas");
+	        	//showMovies();
+	            break;
+	        case 2:
+	        	System.out.println("viendo series");
+	            //showSeries();
+	            break;
+	        case 3:
+	        	System.out.println("leyendo libros");
+	            //showBooks();
+	            break;
+	        case 4:
+	        	System.out.println("leyendo revistas");
+	            //showMagazines();
+	            break;
+	        case 5:
+	        	System.out.println("reporte...");
+	            //makeReport();
+	            break;
+	        case 6:
+	            Date today = new Date();
+	            System.out.println("Reporte del dia "+today);
+	            //makeReport(today);
+	            break;
+		}
+	}
+	
+	// UTILITIES ---------------------------------
 	
 	/**
 	 * valida si la entrada del usuario esta entre los limites numericos permitidos
 	 * @param opcion
 	 * @return
 	 */
-	public boolean validatingMainMenuInput(int opcion) {
+	private boolean validatingMainMenuInput(int opcion) {
 		if(opcion >= 0 && opcion <= this.MAINMAXOPTION) {
 			return true;
 		}
@@ -107,7 +147,7 @@ public class UserInterface {
 	/**
 	 * Muestra un mensaje de error generico
 	 */
-	public void showNotPassedValidationMessage() {
+	private void showNotPassedValidationMessage() {
 		System.out.println("Selecciona una opcion, tu opcion no es valida");
 	}
 }
