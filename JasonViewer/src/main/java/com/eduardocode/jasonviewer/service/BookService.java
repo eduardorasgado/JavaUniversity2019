@@ -1,6 +1,10 @@
+/**
+ * 
+ */
 package com.eduardocode.jasonviewer.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.eduardocode.jasonviewer.model.Book;
 import com.eduardocode.jasonviewer.repository.BookRepository;
@@ -11,7 +15,7 @@ import com.eduardocode.jasonviewer.repository.BookRepository;
  * @author cheetos
  *
  */
-public class BookService implements IWatchableService<Book> {
+public class BookService extends WatchableService implements IWatchableService<Book> {
 
 	private BookRepository bookRepository;
 	
@@ -59,4 +63,21 @@ public class BookService implements IWatchableService<Book> {
 		return bookRepository.delete(index);
 	}
 
+	/**
+	 * Metodo que actualiza un libro cuando este es leido
+	 */
+	@Override
+	public void playResource(int index) {
+		// libro que va a ser actualizado
+		Book book = bookRepository.getAll().get(index);
+		book.setRead(true);
+		
+		Date dateInicio = book.startToSee(new Date());
+		this.simulateTimeLapse(1000);
+		// el tiempo que fue leido el libro
+		book.setTimeRead(1000);
+		
+	}
+
 }
+
