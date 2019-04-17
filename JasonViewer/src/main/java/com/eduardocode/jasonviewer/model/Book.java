@@ -3,7 +3,6 @@ package com.eduardocode.jasonviewer.model;
 import java.util.Date;
 
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * Representa un modelo de libro, extiende de readable
