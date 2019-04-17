@@ -10,6 +10,7 @@ import com.eduardocode.jasonviewer.service.ChapterService;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.service.SerieService;
 import com.eduardocode.jasonviewer.view.component.MoviesUIComponent;
+import com.eduardocode.jasonviewer.view.component.SeriesUIComponent;
 
 /**
  * Clase que representa la interaccion directa con el usuario
@@ -19,25 +20,25 @@ import com.eduardocode.jasonviewer.view.component.MoviesUIComponent;
 public class UserInterface extends GenericViewComponent {
 	// componentes de cada recurso
 	MoviesUIComponent moviesUIComponent = null;
+	SeriesUIComponent seriesUIComponent = null;
 	
 	private  MovieService movieService = null;
 	private SerieService serieService = null;
-	private ChapterService chapterService = null;
 	private BookService bookService = null;
 	
 	public UserInterface(MovieService movieService,
 							SerieService serieService, 
-							ChapterService chapterService,
 							BookService bookService, int mainmaxoption) {
 		
 		// instanciando y configurando los componentes asociados
-		moviesUIComponent = new MoviesUIComponent();
-		moviesUIComponent.setService(movieService);
+		this.moviesUIComponent = new MoviesUIComponent();
+		this.moviesUIComponent.setService(movieService);
+		this.seriesUIComponent = new SeriesUIComponent();
+		this.seriesUIComponent.setService(serieService);
 		
 		// actualizando los servicios globales
 		this.movieService = movieService;
 		this.serieService = serieService;
-		this.chapterService = chapterService;
 		this.bookService = bookService;
 		
 		this.maxOption = mainmaxoption;
@@ -90,8 +91,8 @@ public class UserInterface extends GenericViewComponent {
 	        	this.movieService = moviesUIComponent.getMovieService();
 	            break;
 	        case 2:
-	        	System.out.println("viendo series");
-	            //showSeries();
+	        	seriesUIComponent.interact();
+	        	this.serieService = seriesUIComponent.getSerieService();
 	            break;
 	        case 3:
 	        	System.out.println("leyendo libros");

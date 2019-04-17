@@ -49,10 +49,11 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
         	String viewed = movie.getIsViewed();
         	
         	System.out.println("============");
-        	System.out.println((i+1)+". "+movie.getTitle());
-        	System.out.println(movie.getGenre());
-        	System.out.println("visto: "+viewed);
+        	System.out.print((i+1)+". "+movie.getTitle());
+        	System.out.print(" | genero: "+movie.getGenre());
+        	System.out.println(" | visto: "+viewed);
         }
+        System.out.println("============");
         System.out.println("0. Regresar al menu anterior");
     	System.out.println("============");
         System.out.println("Tu opcion: ");
@@ -85,12 +86,17 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 		
 	}
 
+	/**
+	 * Simula la reproduccion de la pelicula seleccionada por el usuario
+	 * de igual manera actualiza el servicio de pelicula tras la accion
+	 */
 	@Override
 	public void showResourcePlayer(int option) {
 		System.out.println("[REPRODUCIENDO LA PELICULA ]: "
 					+ movieService.findByIndex(option).getTitle());
 		
 		System.out.println("");
+		movieService.playResource(option);
 	}
 
 }
