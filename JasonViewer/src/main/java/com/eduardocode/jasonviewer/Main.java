@@ -2,9 +2,11 @@ package com.eduardocode.jasonviewer;
 
 import java.util.ArrayList;
 
+import com.eduardocode.jasonviewer.model.Book;
 import com.eduardocode.jasonviewer.model.Chapter;
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.model.Serie;
+import com.eduardocode.jasonviewer.service.BookService;
 import com.eduardocode.jasonviewer.service.ChapterService;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.service.SerieService;
@@ -17,6 +19,7 @@ public class Main {
 		MovieService movieService = new MovieService();
 		SerieService serieService = new SerieService();
 		ChapterService chapterService = new ChapterService();
+		BookService bookService = new BookService();
 		
 		// TESTEANDO MOVIES
 		System.out.println("\n\n MOVIES");
@@ -85,6 +88,12 @@ public class Main {
 		
 		System.out.println("Serie "+s2.getTitle()+" vista: "+s2.getIsViewed());
 		
+		// TESTEANDO LIBROS
+		
+		System.out.println("[TESTING BOOKS]");
+		bookService.getAll().forEach( (Book book) -> {
+			System.out.println("Libro: "+book);
+		});
 		
 	}
 }

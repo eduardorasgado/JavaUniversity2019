@@ -3,6 +3,7 @@ package com.eduardocode.jasonviewer.model;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Representa un modelo de libro, extiende de readable
@@ -19,5 +20,13 @@ public class Book extends Readable{
 	public Book(String title, String genre, Date editionDate) {
 		super(title, genre, editionDate);
 	}
+
+	@Override
+	public String toString() {
+		return "Book [isbn=" + isbn + ", read=" + read + ", getTitle()=" + getTitle() + ", getEditionDate()="
+				+ getEditionDate() + ", getGenre()=" + getGenre() + "]";
+	}
+	
+	
 
 }

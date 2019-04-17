@@ -1,6 +1,7 @@
 package com.eduardocode.jasonviewer.repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.eduardocode.jasonviewer.model.Book;
 
@@ -17,6 +18,7 @@ public class BookRepository implements JVRepository<Book> {
 	
 	public BookRepository() {
 		books = new ArrayList<Book>();
+		this.initBookList();
 	}
 	
 	/**
@@ -91,6 +93,14 @@ public class BookRepository implements JVRepository<Book> {
 		} else {
 			return false;
 		}
+	}
+	
+	private void initBookList() {
+		this.books.add(new Book("Hagame caso", "negocios", new Date()));
+		this.books.add(new Book("The lean Startup", "emprendimiento", new Date()));
+		this.books.add(new Book("Padre rico, padre pobre", "negocios", new Date()));
+		this.books.add(new Book("Ce qui va changer le marques", "marketing", new Date()));
+		this.books.add(new Book("lost and founder", "emprendimiento", new Date()));
 	}
 
 }
