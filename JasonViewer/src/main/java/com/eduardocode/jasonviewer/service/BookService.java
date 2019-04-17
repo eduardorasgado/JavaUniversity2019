@@ -73,10 +73,14 @@ public class BookService extends WatchableService implements IWatchableService<B
 		book.setRead(true);
 		
 		Date dateInicio = book.startToSee(new Date());
-		this.simulateTimeLapse(1000);
-		// el tiempo que fue leido el libro
-		book.setTimeRead(1000);
 		
+		this.simulateTimeLapse(1000);
+		
+		// el tiempo que fue leido el libro
+		book.stoptToSee(dateInicio, new Date());
+		
+		// guardando el recurso
+		this.bookRepository.update(index, book);
 	}
 
 }

@@ -92,8 +92,15 @@ public class Main {
 		
 		System.out.println("[TESTING BOOKS]");
 		bookService.getAll().forEach( (Book book) -> {
-			System.out.println("Libro: "+book);
+			System.out.println("Libro: "+book.getTitle()+", visto: "+book.getIsRead());
 		});
 		
+		System.out.println("Leyendo el libro 2...");
+		// suponiendo que leemos el libro 2
+		bookService.playResource(1);
+		
+		bookService.getAll().forEach( (Book book) -> {
+			System.out.println("Libro: "+book.getTitle()+", leido: "+book.getIsRead());
+		});
 	}
 }
