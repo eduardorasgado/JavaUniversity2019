@@ -5,7 +5,7 @@ package com.eduardocode.jasonviewer.view.component;
  * y menu de los recursos para el usuario
  * @author cheetos
  *
- * @param <T>
+ * @param <Entity, EntityService>
  */
 public interface IFrontComponent<Entity, EntityService> {
 	

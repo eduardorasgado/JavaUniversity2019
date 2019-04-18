@@ -62,10 +62,13 @@ public class SeriesUIComponent extends GenericViewComponent implements IFrontCom
 		}
 	}
 
+	/**
+	 * Muestra las series disponibles en la aplicacion
+	 */
 	@Override
 	public void showMenu() {
 		System.out.println("::SERIES::");
-		for(int i = 0; i < serieService.getAll().size(); i++) {
+		for(int i = 0; i < this.maxOption; i++) {
 			Serie serie = serieService.findByIndex(i);
 			String viewed = serie.getIsViewed();
 			
@@ -107,6 +110,10 @@ public class SeriesUIComponent extends GenericViewComponent implements IFrontCom
 		this.chapterService = this.chapterComponent.getChapterService();
 	}
 	
+	/**
+	 * Inicializa  el servicio de capitulos e incluye este servicio
+	 * dentro del componente ui de capitulos que esta dentro del componente de series 
+	 */
 	private void initChapterService() {
 		this.chapterService = new ChapterService();
 		chapterComponent.setService(chapterService);
