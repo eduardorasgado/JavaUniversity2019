@@ -6,7 +6,6 @@ package com.eduardocode.jasonviewer.view;
 import java.util.Date;
 
 import com.eduardocode.jasonviewer.service.BookService;
-import com.eduardocode.jasonviewer.service.ChapterService;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.service.SerieService;
 import com.eduardocode.jasonviewer.view.component.BooksUIComponent;
@@ -104,7 +103,7 @@ public class UserInterface extends GenericViewComponent {
 	        	this.bookService = bookUIComponent.getBookService();
 	            break;
 	        case 4:
-	        	System.out.println("leyendo revistas");
+	        	System.out.println("leyendo revistas...");
 	            //showMagazines();
 	            break;
 	        case 5:
