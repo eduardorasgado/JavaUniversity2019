@@ -22,10 +22,16 @@ public class SeriesUIComponent extends GenericViewComponent implements IFrontCom
 	protected SerieService serieService;
 	protected ChapterService chapterService;
 	
+	private ChapterUIComponent chapterComponent;
+	
+	public 	SeriesUIComponent() {
+		chapterComponent = new ChapterUIComponent();
+		this.initChapterService();
+	}
+	
 	@Override
 	public void setService(SerieService serieService) {
 		this.serieService = serieService;
-		this.chapterService = new ChapterService();
 		this.maxOption = serieService.getAll().size();
 	}
 
@@ -79,7 +85,22 @@ public class SeriesUIComponent extends GenericViewComponent implements IFrontCom
 	public void showResourcePlayer(int option) {
 		System.out.println("[JASON VIEWER: SERIES]: "+ serieService.findByIndex(option).getTitle());
 		
-		//TODO: aqui se va a tener que mandar a llamar al componente visual de capitulos
+		// se actualiza el servicio de serie para el componente de capitulo
+		this.chapterComponent.setSerieService(serieService);
+		// se actualiza el indice de la serie a visualizar
+		this.chapterComponent.setSerieIndex(option);
+		
+		// se manda a traer el loop de interact
+		this.chapterComponent.interact();
+		
+		// al final, se actualiza el servicio de chapter
+		// aunque no es necesario
+		this.chapterService = this.chapterComponent.getChapterService();
+	}
+	
+	private void initChapterService() {
+		this.chapterService = new ChapterService();
+		chapterComponent.setService(chapterService);
 	}
 
 }
