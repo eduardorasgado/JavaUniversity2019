@@ -12,6 +12,8 @@ import com.eduardocode.jasonviewer.view.GenericViewComponent;
 import lombok.Data;
 
 /**
+ * Componente para poder mostrar, reproducir o visualizar los libros disponibles
+ * para el cliente en la aplicacion
  * @author cheetos
  *
  */
@@ -21,12 +23,19 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 	private ArrayList<Book> books = null;
 	private BookService bookService;
 
+	/**
+	 * Permite configurar el servicio de trabajo para el componente
+	 */
 	@Override
 	public void setService(BookService bookService) {
 		this.bookService = bookService;
 		this.maxOption = this.bookService.getAll().size();
 	}
 
+	/**
+	 * Permite llevar al usuario al loop del menu para el servicio de libros en
+	 * demanda
+	 */
 	@Override
 	public void interact() {
 		if(bookService == null) {
@@ -50,6 +59,10 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 		}
 	}
 
+	/**
+	 * Muestra la lista de todos los libros de la app, asi como la visualizacion
+	 * por el usuario
+	 */
 	@Override
 	public void showMenu() {
 		System.out.println("::BOOKS::");
@@ -60,6 +73,9 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 		}
 	}
 
+	/**
+	 * simulacion de la visualizacion o lectura de un libro en especifico
+	 */
 	@Override
 	public void showResourcePlayer(int option) {
 		// TODO Auto-generated method stub
