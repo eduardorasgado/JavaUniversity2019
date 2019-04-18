@@ -3,6 +3,8 @@
  */
 package com.eduardocode.jasonviewer.view.component;
 
+import java.util.ArrayList;
+
 import com.eduardocode.jasonviewer.model.Book;
 import com.eduardocode.jasonviewer.service.BookService;
 import com.eduardocode.jasonviewer.view.GenericViewComponent;
@@ -16,6 +18,7 @@ import lombok.Data;
 @Data
 public class BooksUIComponent extends GenericViewComponent implements IFrontComponent<Book, BookService> {
 	
+	private ArrayList<Book> books = null;
 	private BookService bookService;
 
 	@Override
@@ -31,7 +34,8 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 					+ "componente de vista");
 		} else {
 			while(true) {
-				this.maxOption = this.bookService.getAll().size();
+				this.books = this.bookService.getAll();
+				this.maxOption = this.books.size();
 				this.showMenu();
 				
 				int option = this.getInputAndValidating();
@@ -50,14 +54,16 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 	public void showMenu() {
 		System.out.println("::BOOKS::");
 		for(int i = 0; i < this.maxOption; i++) {
-			System.out.println((i+1)+". Libro");
+			Book book = this.books.get(i);
+			System.out.println((i+1)+". "+book.getTitle()
+					+" | leido: "+book.getIsRead());
 		}
 	}
 
 	@Override
 	public void showResourcePlayer(int option) {
 		// TODO Auto-generated method stub
-		System.out.println("Leyendo el libro: "+option);
+		System.out.println("Leyendo el libro: "+books.get(option).getTitle());
 	}
 
 }
