@@ -23,6 +23,9 @@ public class ChapterUIComponent extends GenericViewComponent implements IFrontCo
 
 	private SerieService serieService = null;
 	private ChapterService chapterService = null;
+	private Serie serie;
+	ArrayList<Chapter> capitulos = null;
+	
 	private int serieIndex;
 	
 	@Override
@@ -47,7 +50,13 @@ public class ChapterUIComponent extends GenericViewComponent implements IFrontCo
 			while(true) {
 				// loop principal
 				this.showMenu();
-				break;
+				int option = this.getInputAndValidating();
+				if(option == 0) {
+					System.out.println("Has salido de la serie... ");
+					break;
+				} else {
+					this.showResourcePlayer(option - 1);
+				}
 			}
 		}
 	}
@@ -58,21 +67,30 @@ public class ChapterUIComponent extends GenericViewComponent implements IFrontCo
 	@Override
 	public void showMenu() {
 		// dado el indice de la serie
-		Serie serie = serieService.findByIndex(serieIndex);
-		ArrayList<Chapter> capitulos = serie.getChapters();
+		this.serie = serieService.findByIndex(serieIndex);
+		
+		capitulos = serie.getChapters();
+		this.maxOption = capitulos.size();
 		
 		System.out.println(":: TODOS LOS CAPITULOS::");
 		for(int i = 0; i < capitulos.size(); i++) {
 			Chapter capitulo = capitulos.get(i);
-			System.out.println((i+1)+". "+capitulo.getTitle());
+			System.out.println((i+1)+". "+capitulo.getTitle()+" | temporada: "
+					+capitulo.getSeasonNumber()+" | visto: "+ capitulo.getIsViewed());
 		}
+		System.out.println("============");
+        System.out.println("0. Regresar al menu anterior");
+    	System.out.println("============");
+        System.out.println("Tu opcion: ");
 		
 	}
 
 	@Override
 	public void showResourcePlayer(int option) {
-		// TODO Auto-generated method stub
+		System.out.println("...Reproduciendo "+
+				capitulos.get(option).getTitle());
 		
+		this.serieService = this.chapterService.playResource(serieService, option, serie);
 	}
 
 }

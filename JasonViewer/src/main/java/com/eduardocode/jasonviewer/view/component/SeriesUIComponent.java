@@ -81,6 +81,12 @@ public class SeriesUIComponent extends GenericViewComponent implements IFrontCom
 		
 	}
 
+	/**
+	 * Llama al menu de visualizacion de capitulos definidos en una serie determi
+	 * nada.
+	 * Asi mismo actualiza el servicio de series con las series terminadas
+	 * o los capitulos vistos de una serie
+	 */
 	@Override
 	public void showResourcePlayer(int option) {
 		System.out.println("[JASON VIEWER: SERIES]: "+ serieService.findByIndex(option).getTitle());
@@ -93,6 +99,9 @@ public class SeriesUIComponent extends GenericViewComponent implements IFrontCom
 		// se manda a traer el loop de interact
 		this.chapterComponent.interact();
 		
+		// se actualiza el servicio de series ya que asi sabemos si se marcaron las series 
+		// y los capitulos vistos
+		this.serieService = this.chapterComponent.getSerieService();
 		// al final, se actualiza el servicio de chapter
 		// aunque no es necesario
 		this.chapterService = this.chapterComponent.getChapterService();
