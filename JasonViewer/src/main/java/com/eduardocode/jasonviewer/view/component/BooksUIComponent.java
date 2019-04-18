@@ -54,7 +54,7 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 	public void showMenu() {
 		System.out.println("::BOOKS::");
 		for(int i = 0; i < this.maxOption; i++) {
-			Book book = this.books.get(i);
+			Book book = bookService.findByIndex(i);
 			System.out.println((i+1)+". "+book.getTitle()
 					+" | leido: "+book.getIsRead());
 		}
@@ -63,7 +63,9 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 	@Override
 	public void showResourcePlayer(int option) {
 		// TODO Auto-generated method stub
-		System.out.println("Leyendo el libro: "+books.get(option).getTitle());
+		System.out.println("Leyendo el libro: "
+					+bookService.findByIndex(option).getTitle());
+		bookService.playResource(option);
 	}
 
 }
