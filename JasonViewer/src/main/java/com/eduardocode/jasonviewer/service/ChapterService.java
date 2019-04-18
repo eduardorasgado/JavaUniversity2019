@@ -24,6 +24,14 @@ public class ChapterService extends WatchableService{
 	}
 
 	
+	/**
+	 * Simula la visualizacion de un capitulo determinado segun una serie dada,
+	 * actualiza la serie y la devuelve
+	 * @param serieService
+	 * @param chapterIndex
+	 * @param serie
+	 * @return
+	 */
 	public SerieService playResource(SerieService serieService, 
 										int chapterIndex, Serie serie) {
 		

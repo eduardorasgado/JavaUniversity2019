@@ -11,7 +11,6 @@ public class Main {
 		
 		MovieService movieService = new MovieService();
 		SerieService serieService = new SerieService();
-		ChapterService chapterService = new ChapterService();
 		BookService bookService = new BookService();
 		
 		UserInterface ui = new UserInterface(
