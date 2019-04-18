@@ -9,6 +9,7 @@ import com.eduardocode.jasonviewer.service.BookService;
 import com.eduardocode.jasonviewer.service.ChapterService;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.service.SerieService;
+import com.eduardocode.jasonviewer.view.component.BooksUIComponent;
 import com.eduardocode.jasonviewer.view.component.MoviesUIComponent;
 import com.eduardocode.jasonviewer.view.component.SeriesUIComponent;
 
@@ -21,6 +22,7 @@ public class UserInterface extends GenericViewComponent {
 	// componentes de cada recurso
 	MoviesUIComponent moviesUIComponent = null;
 	SeriesUIComponent seriesUIComponent = null;
+	BooksUIComponent bookUIComponent = null;
 	
 	private  MovieService movieService = null;
 	private SerieService serieService = null;
@@ -35,6 +37,9 @@ public class UserInterface extends GenericViewComponent {
 		this.moviesUIComponent.setService(movieService);
 		this.seriesUIComponent = new SeriesUIComponent();
 		this.seriesUIComponent.setService(serieService);
+		this.bookUIComponent = new BooksUIComponent();
+		this.bookUIComponent.setService(bookService);
+		
 		
 		// actualizando los servicios globales
 		this.movieService = movieService;
@@ -86,17 +91,17 @@ public class UserInterface extends GenericViewComponent {
 		switch (opcion) {
 	        case 1:
 	        	// despliegue del menu de las peliculas
-	        	moviesUIComponent.interact();
+	        	this.moviesUIComponent.interact();
 	        	// una vez saliendo de esto, los servicios son actualizados
 	        	this.movieService = moviesUIComponent.getMovieService();
 	            break;
 	        case 2:
-	        	seriesUIComponent.interact();
+	        	this.seriesUIComponent.interact();
 	        	this.serieService = seriesUIComponent.getSerieService();
 	            break;
 	        case 3:
-	        	System.out.println("leyendo libros");
-	            //showBooks();
+	        	this.bookUIComponent.interact();
+	        	this.bookService = bookUIComponent.getBookService();
 	            break;
 	        case 4:
 	        	System.out.println("leyendo revistas");

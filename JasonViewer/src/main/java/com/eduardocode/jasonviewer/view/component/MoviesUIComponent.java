@@ -44,7 +44,7 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 	public void showMenu() {
 		System.out.println("::MOVIES::");
         
-        for(int i = 0; i < movieService.getAll().size(); i++) {
+        for(int i = 0; i < this.maxOption; i++) {
         	Movie movie = movieService.findByIndex(i);
         	String viewed = movie.getIsViewed();
         	

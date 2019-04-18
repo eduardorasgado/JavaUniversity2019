@@ -73,7 +73,7 @@ public class ChapterUIComponent extends GenericViewComponent implements IFrontCo
 		this.maxOption = capitulos.size();
 		
 		System.out.println(":: TODOS LOS CAPITULOS::");
-		for(int i = 0; i < capitulos.size(); i++) {
+		for(int i = 0; i < this.maxOption; i++) {
 			Chapter capitulo = capitulos.get(i);
 			System.out.println((i+1)+". "+capitulo.getTitle()+" | temporada: "
 					+capitulo.getSeasonNumber()+" | visto: "+ capitulo.getIsViewed());
