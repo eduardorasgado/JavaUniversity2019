@@ -26,7 +26,24 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 
 	@Override
 	public void interact() {
-		System.out.println("Leyendo libros...");
+		if(bookService == null) {
+			System.out.println("No ha sido inicializado el servicio para series en el"
+					+ "componente de vista");
+		} else {
+			while(true) {
+				this.maxOption = this.bookService.getAll().size();
+				this.showMenu();
+				
+				int option = this.getInputAndValidating();
+				
+				if(option == 0) {
+					System.out.println("Has salido al menu principal...");
+					break;
+				} else {
+					this.showResourcePlayer(option - 1);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -40,7 +57,7 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 	@Override
 	public void showResourcePlayer(int option) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Leyendo el libro: "+option);
 	}
 
 }
