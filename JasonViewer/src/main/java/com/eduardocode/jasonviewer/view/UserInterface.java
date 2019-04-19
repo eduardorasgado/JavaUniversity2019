@@ -11,6 +11,7 @@ import com.eduardocode.jasonviewer.service.SerieService;
 import com.eduardocode.jasonviewer.view.component.BooksUIComponent;
 import com.eduardocode.jasonviewer.view.component.MoviesUIComponent;
 import com.eduardocode.jasonviewer.view.component.SeriesUIComponent;
+import com.eduardocode.jasonviewer.view.component.reporter.GeneralReporterUIComponent;
 
 /**
  * Clase que representa la interaccion directa con el usuario
@@ -22,6 +23,7 @@ public class UserInterface extends GenericViewComponent {
 	MoviesUIComponent moviesUIComponent = null;
 	SeriesUIComponent seriesUIComponent = null;
 	BooksUIComponent bookUIComponent = null;
+	GeneralReporterUIComponent generalReporterUIComponent = null;
 	
 	private  MovieService movieService = null;
 	private SerieService serieService = null;
@@ -38,7 +40,7 @@ public class UserInterface extends GenericViewComponent {
 		this.seriesUIComponent.setService(serieService);
 		this.bookUIComponent = new BooksUIComponent();
 		this.bookUIComponent.setService(bookService);
-		
+		this.generalReporterUIComponent = new GeneralReporterUIComponent(3);
 		
 		// actualizando los servicios globales
 		this.movieService = movieService;
@@ -107,7 +109,11 @@ public class UserInterface extends GenericViewComponent {
 	            //showMagazines();
 	            break;
 	        case 5:
-	        	System.out.println("reporte...");
+	        	this.generalReporterUIComponent.setMovieService(movieService);
+	        	this.generalReporterUIComponent.setSerieService(serieService);
+	        	this.generalReporterUIComponent.setBookService(bookService);
+	        	
+	        	this.generalReporterUIComponent.interact();
 	            //makeReport();
 	            break;
 	        case 6:
