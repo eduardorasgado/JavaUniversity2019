@@ -25,11 +25,8 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 	private ArrayList<Serie> series = null;
 	private ArrayList<Book> books = null;
 	
-	Report fileGenerator = null;
-	
 	public GeneralReporterUIComponent(int servicesQuantity) {
 		this.maxOption = servicesQuantity;
-		this.fileGenerator = new Report();
 	}
 	
 	/**
@@ -68,7 +65,7 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 			}
 		} else {
 			System.out.println("Uno o mas servicios no han sido configurados para la"
-					+ "correcta función del reporter");
+					+ "correcta funcion del reporter");
 		}
 	}
 
@@ -79,9 +76,6 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 	 */
 	@Override
 	protected void showMovieReport() {
-		fileGenerator.setTitle("::REPORTE DE PELICULAS::");
-		fileGenerator.setExtension("txt");
-		fileGenerator.setNameFile("reporte_general");
 		String content = "";
 		
 		System.out.println("::REPORTE DE PELICULAS::");
@@ -94,9 +88,8 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 			System.out.println(movieLine);
 			content += movieLine+"\n";
 		}
-		fileGenerator.setContent(content);
-		fileGenerator.buildReport();
-		System.out.println("[El archivo de su reporte ha sido generado con exito]");
+		// generando el reporte
+		this.generateReport("::REPORTE DE PELICULAS::", "reporte_general_de_peliculas", content);
 	}
 
 	/**
