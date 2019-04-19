@@ -27,6 +27,9 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 	
 	/**
 	 * Impresion en pantalla del menu general
+	 * <p>
+	 * Metodo que permite al usuario visualizar en pantalla los posibles tipos
+	 * de reporte que puede elaborar
 	 */
 	@Override
 	protected void showMainMenu() {

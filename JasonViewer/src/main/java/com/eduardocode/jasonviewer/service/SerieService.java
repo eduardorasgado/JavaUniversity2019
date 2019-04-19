@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.eduardocode.jasonviewer.model.Chapter;
 import com.eduardocode.jasonviewer.model.Serie;
 import com.eduardocode.jasonviewer.repository.SerieRepository;
+import com.eduardocode.jasonviewer.view.component.reporter.GeneralReporterUIComponent;
 
 /**
  * Servicio para interactuar con el repositorio de la clase Serie
@@ -67,6 +68,7 @@ public class SerieService implements IWatchableService<Serie> {
 	
 	/**
 	 * Metodo que retorna la cantidad de capitulos vistos de una serie
+	 * @see com.eduardocode.jasonviewer.view.component.reporter.GeneralReporterUIComponent
 	 * @param serieIndex
 	 * @return
 	 */
