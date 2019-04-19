@@ -114,7 +114,6 @@ public class UserInterface extends GenericViewComponent {
 	        	this.generalReporterUIComponent.setBookService(bookService);
 	        	
 	        	this.generalReporterUIComponent.interact();
-	            //makeReport();
 	            break;
 	        case 6:
 	            Date today = new Date();

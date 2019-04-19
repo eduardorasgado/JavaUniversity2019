@@ -3,6 +3,12 @@
  */
 package com.eduardocode.jasonviewer.view.component.reporter;
 
+import java.util.ArrayList;
+
+import com.eduardocode.jasonviewer.model.Book;
+import com.eduardocode.jasonviewer.model.Movie;
+import com.eduardocode.jasonviewer.model.Serie;
+
 /**
  * Componente visual que representa la interaccion entre el usuario y la creacion
  * de reportes generales
@@ -10,6 +16,10 @@ package com.eduardocode.jasonviewer.view.component.reporter;
  *
  */
 public class GeneralReporterUIComponent extends GenericReporterComponent {
+	
+	private ArrayList<Movie> movies = null;
+	private ArrayList<Serie> series = null;
+	private ArrayList<Book> books = null;
 	
 	public GeneralReporterUIComponent(int servicesQuantity) {
 		this.maxOption = servicesQuantity;
@@ -41,9 +51,9 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 					break;
 				} else {
 					// impresion de reporter dada la opcion elegida por el usuario
-					System.out.println("Reporter.... doing something");
 					// implementado en genericreportercomponent
 					this.runResourceReport(option);
+					System.out.println("\n");
 				}
 			}
 		} else {
@@ -54,20 +64,39 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 
 	@Override
 	protected void showMovieReport() {
-		// TODO Auto-generated method stub
+		System.out.println("::REPORTE DE PELICULAS::");
+		this.movies = this.movieService.getAll();
+		
+		for(int i = 0; i < this.movies.size();i++) {
+			Movie movie = this.movies.get(i);
+			System.out.print((i+1)+". Titulo: "+movie.getTitle());
+			System.out.println(" | visto: "+movie.getIsViewed());
+		}
 		
 	}
 
 	@Override
 	protected void showSerieReport() {
-		// TODO Auto-generated method stub
+		System.out.println("::REPORTE DE SERIES::");
+		this.series = serieService.getAll();
 		
+		for(int i = 0; i < this.series.size(); i++) {
+			Serie serie = this.series.get(i);
+			System.out.print((i+1)+". Titulo: "+serie.getTitle());
+			System.out.println(" | visto: "+serie.getIsViewed());
+		}
 	}
 
 	@Override
 	protected void showBookReport() {
-		// TODO Auto-generated method stub
+		System.out.println("::REPORTE DE LIBROS::");
+		this.books = bookService.getAll();
 		
+		for(int i = 0; i < this.books.size(); i++) {
+			Book book = this.books.get(i);
+			System.out.print((i+1)+". Titulo: "+book.getTitle());
+			System.out.println(" | leido: "+book.getIsRead());
+		}
 	}
 
 }

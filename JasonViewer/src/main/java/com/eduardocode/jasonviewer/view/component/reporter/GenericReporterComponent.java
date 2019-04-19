@@ -56,6 +56,19 @@ public abstract class GenericReporterComponent extends GenericViewComponent {
 	 * @param option
 	 */
 	protected void runResourceReport(int option) {
-		//
+		switch (option) {
+		case 1:
+			this.showMovieReport();
+			break;
+		case 2:
+			this.showSerieReport();
+			break;
+		case 3:
+			this.showBookReport();
+			break;
+
+		default:
+			break;
+		}
 	}
 }
