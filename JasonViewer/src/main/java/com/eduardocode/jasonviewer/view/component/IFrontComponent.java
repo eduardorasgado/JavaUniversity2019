@@ -1,6 +1,7 @@
 package com.eduardocode.jasonviewer.view.component;
 
 /**
+ * <h1>IFrontComponent</h1>
  * Componente que permite la modularidad y separacion de las opciones visuales
  * y menu de los recursos para el usuario
  * @author cheetos
@@ -25,5 +26,10 @@ public interface IFrontComponent<Entity, EntityService> {
 	 */
 	void showMenu();
 	
+	/**
+	 * Metodo para desarrollar la logica de la reproduccion del recurso deseado
+	 * por el usuario
+	 * @param option
+	 */
 	void showResourcePlayer(int option);
 }
