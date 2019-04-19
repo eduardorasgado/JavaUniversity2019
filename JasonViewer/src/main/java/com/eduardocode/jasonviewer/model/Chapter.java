@@ -6,8 +6,14 @@ package com.eduardocode.jasonviewer.model;
 import lombok.Data;
 
 /**
+ * <h1>Chapter</h1>
+ * Hereda de Movie en un contexto tecnico mas no logistico o de negocio
+ * <p>
  * Representa un capitulo que le pertenece a una serie
+ * 
  * @author cheetos
+ * @versio 1.1
+ * @since 2019
  *
  */
 @Data

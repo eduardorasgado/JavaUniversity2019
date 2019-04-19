@@ -8,8 +8,13 @@ import java.util.Date;
 import lombok.Data;
 
 /**
+ * <h1>Movie</h1>
+ * Hereda de Watchable e implementa la interfaz IPlayable
+ * <p>
  * Representacion de una pelicula en la aplicacion
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 @Data

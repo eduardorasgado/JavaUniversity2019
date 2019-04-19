@@ -8,9 +8,15 @@ import java.util.ArrayList;
 import lombok.Data;
 
 /**
+ * <h1>Serie</h1>
+ * Representa un modelo. Hereda de Watchable
+ * <p>
  * Representacion de una serie dentro de la aplicacion
  * Una serie posee capitulos
+ * 
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 @Data

@@ -14,8 +14,14 @@ import com.eduardocode.jasonviewer.view.component.SeriesUIComponent;
 import com.eduardocode.jasonviewer.view.component.reporter.GeneralReporterUIComponent;
 
 /**
+ * <h1>UserInterface</h1>
  * Clase que representa la interaccion directa con el usuario
+ * <p>
+ * Hereda de GenericViewComponent
+ * 
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 public class UserInterface extends GenericViewComponent {

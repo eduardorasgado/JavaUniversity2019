@@ -13,9 +13,14 @@ import com.eduardocode.jasonviewer.view.GenericViewComponent;
 import lombok.Data;
 
 /**
+ * <h1>GenericReporterComponent</h1>
+ * Hereda de GenericViewComponent
+ * <p>
  * Clase abstracta que permite derivar de ella reporteadores para la aplicacion
+ * 
  * @author cheetos
- *
+ * @version 1.1
+ * @since 2019
  */
 @Data
 public abstract class GenericReporterComponent extends GenericViewComponent {

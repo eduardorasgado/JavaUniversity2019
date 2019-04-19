@@ -6,9 +6,13 @@ import java.util.Date;
 import lombok.Data;
 
 /**
+ * <h1>Readable</h1>
+ * 
  * Clase que representa el model del que heredan todas aquellas clases que se lean
  * 
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 @Data
