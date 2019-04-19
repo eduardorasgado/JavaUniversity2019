@@ -6,8 +6,17 @@ package com.eduardocode.jasonviewer.model;
 import lombok.Data;
 
 /**
+ * <h1>Watchable</h1>
+ * Clase padre abstracta
+ * <p>
  * Clase abstracta que representa tres clases hijas: serie, chapter y movie
+ * Contiene el metodo abstracto 
+ * {@code playResource()} que es obligatorio implementar en todo aquello que pertenezca
+ * a la familia
+ * 
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 
@@ -44,6 +53,11 @@ public abstract class Watchable {
 		this.year = year;
 	}
 	
+	/**
+	 * Metodo que devuelve en lenguaje humano, si un objeto que hereda de watchable
+	 * ha sido ya visto
+	 * @return Devuelve un si o un no en string
+	 */
 	public String getIsViewed() {
 		return (this.viewed) ? "Si" : "No";
 	}

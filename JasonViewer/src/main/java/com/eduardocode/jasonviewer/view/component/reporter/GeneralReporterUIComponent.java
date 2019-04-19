@@ -68,7 +68,7 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 			}
 		} else {
 			System.out.println("Uno o mas servicios no han sido configurados para la"
-					+ "correcta función del reporter");
+					+ "correcta funciÃ³n del reporter");
 		}
 	}
 

@@ -5,8 +5,14 @@ import java.util.Date;
 import lombok.Data;
 
 /**
+ * <h1>Book</h1>
+ * Clase que hereda de Readable y que implementa la interfaz IReadable.
+ * <p>
  * Representa un modelo de libro, extiende de readable
+ * 
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 @Data
@@ -20,6 +26,9 @@ public class Book extends Readable implements IReadable{
 		super(title, genre, editionDate);
 	}
 
+	/**
+	 * Sobreescritura del metodo toString para poder hacer debugging
+	 */
 	@Override
 	public String toString() {
 		return "Book [isbn=" + isbn + ", read=" + read + ", getTitle()=" + getTitle() + ", getEditionDate()="
@@ -41,6 +50,10 @@ public class Book extends Readable implements IReadable{
 		
 	}
 	
+	/**
+	 * Metodo que devuelve si un libro ha sido ya leido o no por un usuario
+	 * @return Devuelve un objeto string con un si o un no
+	 */
 	public String getIsRead() {
 		return this.read ? "Si" : "No"; 
 	}

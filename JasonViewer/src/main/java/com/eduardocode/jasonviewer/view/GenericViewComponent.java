@@ -5,6 +5,7 @@ import java.util.Scanner;
 import lombok.Data;
 
 /**
+ * <h1>GenericViewComponent</h1>
  * Clase que representa un generico para los componentes de la vista de la aplicacion
  * @author cheetos
  *
@@ -46,7 +47,7 @@ public abstract class GenericViewComponent {
 	/**
 	 * valida si la entrada del usuario esta entre los limites numericos permitidos
 	 * @param opcion
-	 * @return
+	 * @return Retorna un boleano que representa si la opcion es valida o no
 	 */
 	protected boolean validatingMainMenuInput(int opcion) {
 		if(opcion >= 0 && opcion <= this.maxOption) {

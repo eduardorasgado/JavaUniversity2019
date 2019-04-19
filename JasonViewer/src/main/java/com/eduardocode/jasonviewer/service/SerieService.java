@@ -8,11 +8,16 @@ import java.util.ArrayList;
 import com.eduardocode.jasonviewer.model.Chapter;
 import com.eduardocode.jasonviewer.model.Serie;
 import com.eduardocode.jasonviewer.repository.SerieRepository;
-import com.eduardocode.jasonviewer.view.component.reporter.GeneralReporterUIComponent;
 
 /**
+ * <h1>SerieService</h1>
+ * Clase que implementa la interfaz IWatchableService con el modelo
+ * Serie
+ * <p>
  * Servicio para interactuar con el repositorio de la clase Serie
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 public class SerieService implements IWatchableService<Serie> {
@@ -25,6 +30,8 @@ public class SerieService implements IWatchableService<Serie> {
 
 	/**
 	 * Devuelve todas las series
+	 * 
+	 * @return devuelve una lista de series
 	 */
 	@Override
 	public ArrayList<Serie> getAll() {
@@ -34,6 +41,8 @@ public class SerieService implements IWatchableService<Serie> {
 	/**
 	 * Devuelve el indice de una serie existente en la lista de series
 	 * del repositorio de series
+	 * 
+	 * @return devuelve un indice de serie
 	 */
 	@Override
 	public int getResourceIndex(Serie serie) {
