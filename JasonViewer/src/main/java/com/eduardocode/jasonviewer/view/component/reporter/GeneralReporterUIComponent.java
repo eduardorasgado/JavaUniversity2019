@@ -98,17 +98,24 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 	 */
 	@Override
 	protected void showSerieReport() {
+		String content = "";
 		System.out.println("::REPORTE DE SERIES::");
 		this.series = serieService.getAll();
 		
 		for(int i = 0; i < this.series.size(); i++) {
 			Serie serie = this.series.get(i);
-			System.out.print((i+1)+". Titulo: "+serie.getTitle());
-			System.out.print(" | capitulos totales vistos: "
-						+ this.serieService.chaptersViewbySerie(i)+"/"
-						+ serie.getChapters().size());
-			System.out.println(" | visto: "+serie.getIsViewed());
+			
+			String serieLine = (i+1)+". Titulo: "+serie.getTitle() +
+					" | capitulos totales vistos: "
+					+ this.serieService.chaptersViewbySerie(i)+"/"
+					+ serie.getChapters().size()+" | visto: "+serie.getIsViewed();
+					
+			System.out.println(serieLine);
+			
+			content += serieLine+"\n";
 		}
+		
+		this.generateReport("::REPORTE DE PELICULAS::", "reporte_general_de_series", content);
 	}
 
 	/**
