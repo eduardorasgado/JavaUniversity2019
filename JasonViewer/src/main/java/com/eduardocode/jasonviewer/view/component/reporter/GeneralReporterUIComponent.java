@@ -8,11 +8,15 @@ import java.util.ArrayList;
 import com.eduardocode.jasonviewer.model.Book;
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.model.Serie;
+import com.eduardocode.reportbuilder.model.Report;
 
 /**
+ * <h1>GeneralReporterUIComponent</h1>
  * Componente visual que representa la interaccion entre el usuario y la creacion
  * de reportes generales
  * @author cheetos
+ * @version 1.1
+ * @since 2019
  *
  */
 public class GeneralReporterUIComponent extends GenericReporterComponent {
@@ -21,8 +25,11 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 	private ArrayList<Serie> series = null;
 	private ArrayList<Book> books = null;
 	
+	Report fileGenerator = null;
+	
 	public GeneralReporterUIComponent(int servicesQuantity) {
 		this.maxOption = servicesQuantity;
+		this.fileGenerator = new Report();
 	}
 	
 	/**
@@ -65,17 +72,31 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 		}
 	}
 
+	/**
+	 * Muestra el reporte de las peliculas en la aplicacion.
+	 * Genera un archivo de reporte con los datos detallados de este para el caso
+	 * de las peliculas
+	 */
 	@Override
 	protected void showMovieReport() {
+		fileGenerator.setTitle("::REPORTE DE PELICULAS::");
+		fileGenerator.setExtension("txt");
+		fileGenerator.setNameFile("reporte_general");
+		String content = "";
+		
 		System.out.println("::REPORTE DE PELICULAS::");
 		this.movies = this.movieService.getAll();
 		
 		for(int i = 0; i < this.movies.size();i++) {
 			Movie movie = this.movies.get(i);
-			System.out.print((i+1)+". Titulo: "+movie.getTitle());
-			System.out.println(" | visto: "+movie.getIsViewed());
+			String movieLine = (i+1)+". Titulo: "+movie.getTitle()
+								+" | visto: "+movie.getIsViewed();
+			System.out.println(movieLine);
+			content += movieLine+"\n";
 		}
-		
+		fileGenerator.setContent(content);
+		fileGenerator.buildReport();
+		System.out.println("[El archivo de su reporte ha sido generado con exito]");
 	}
 
 	/**
@@ -97,6 +118,9 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 		}
 	}
 
+	/**
+	 * Muestra el reporte de los libros de la aplicacion
+	 */
 	@Override
 	protected void showBookReport() {
 		System.out.println("::REPORTE DE LIBROS::");
