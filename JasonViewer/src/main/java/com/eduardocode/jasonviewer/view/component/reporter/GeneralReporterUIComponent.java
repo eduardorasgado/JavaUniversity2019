@@ -123,14 +123,21 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 	 */
 	@Override
 	protected void showBookReport() {
+		String content = "";
 		System.out.println("::REPORTE DE LIBROS::");
 		this.books = bookService.getAll();
 		
 		for(int i = 0; i < this.books.size(); i++) {
 			Book book = this.books.get(i);
-			System.out.print((i+1)+". Titulo: "+book.getTitle());
-			System.out.println(" | leido: "+book.getIsRead());
+			String bookLine = (i+1)+". Titulo: "+book.getTitle()+
+					" | leido: "+book.getIsRead();
+			
+			System.out.println(bookLine);
+			
+			content += bookLine+"\n";
 		}
+		
+		this.generateReport("::REPORTE DE LIBROS::", "reporte_general_de_libros", content);
 	}
 
 }
