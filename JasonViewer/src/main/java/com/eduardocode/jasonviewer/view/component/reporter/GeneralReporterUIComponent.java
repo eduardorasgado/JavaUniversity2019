@@ -75,6 +75,10 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 		
 	}
 
+	/**
+	 * Mostrando el reporte de cada una de las series asi como de los capitulos
+	 * vistos por cada serie
+	 */
 	@Override
 	protected void showSerieReport() {
 		System.out.println("::REPORTE DE SERIES::");
@@ -83,6 +87,9 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 		for(int i = 0; i < this.series.size(); i++) {
 			Serie serie = this.series.get(i);
 			System.out.print((i+1)+". Titulo: "+serie.getTitle());
+			System.out.print(" | capitulos totales vistos: "
+						+ this.serieService.chaptersViewbySerie(i)+"/"
+						+ serie.getChapters().size());
 			System.out.println(" | visto: "+serie.getIsViewed());
 		}
 	}
