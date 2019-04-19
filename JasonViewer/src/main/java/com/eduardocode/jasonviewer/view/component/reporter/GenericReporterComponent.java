@@ -9,6 +9,7 @@ import com.eduardocode.jasonviewer.service.BookService;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.service.SerieService;
 import com.eduardocode.jasonviewer.view.GenericViewComponent;
+import com.eduardocode.reportbuilder.model.Report;
 
 import lombok.Data;
 
@@ -28,6 +29,13 @@ public abstract class GenericReporterComponent extends GenericViewComponent {
 	protected SerieService serieService = null;
 	protected BookService bookService = null;
 	protected Date reportDate = null;
+	
+	Report fileGenerator = null;
+	
+	public GenericReporterComponent() {
+		this.fileGenerator = new Report();
+		fileGenerator.setExtension("txt");
+	}
 	
 	/**
 	 * Metodo para imprimir el menu principal del reporter
@@ -75,5 +83,22 @@ public abstract class GenericReporterComponent extends GenericViewComponent {
 		default:
 			break;
 		}
+	}
+	
+	/**
+	 * Genera un archivo con el contenido del reporte del recurso deseado por el
+	 * usuario
+	 * @param titulo
+	 * @param nameFile Nombre del archivo
+	 * @param content Contenido del cuerpo del archivo
+	 */
+	protected void generateReport(String titulo, String nameFile, String content) {
+		fileGenerator.setTitle(titulo);
+		
+		fileGenerator.setNameFile(nameFile);
+		
+		fileGenerator.setContent(content);
+		fileGenerator.buildReport();
+		System.out.println("[El archivo de su reporte ha sido generado con exito]");
 	}
 }

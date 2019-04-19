@@ -7,12 +7,30 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
+/**
+ * <h1>Report</h1>
+ * Libreria que permite crear un objeto de reporteo para una aplicacion
+ * 
+ * <p>
+ * permite crear archivos externos a partir de contenido dinamico previamente
+ * proporcionado por el programa que lo integra
+ * 
+ * @author Eduardo Rasgado Ruiz
+ * @version 1.0
+ * @since 2019
+ *
+ */
 public class Report {
 	private String nameFile;
 	private String content;
 	private String title;
 	private String extension;
 	
+	/**
+	 * Metodo principal de la libreria con la cual se genera el reporte deseado
+	 * por el usuario, este hace uso del nombre del archivo, contenido, titulo
+	 * y la extension del archivo
+	 */
 	public void buildReport() {
 		if(getNameFile() != null && getTitle() != null && getContent() != null) {
 			// crear el archivo
