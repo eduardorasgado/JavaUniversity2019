@@ -7,10 +7,11 @@ import lombok.Data;
 
 /**
  * <h1>Chapter</h1>
- * Hereda de Movie en un contexto tecnico mas no logistico o de negocio
+ * Hereda de {@link Movie} en un contexto tecnico mas no logistico o de negocio
  * <p>
  * Representa un capitulo que le pertenece a una serie
  * 
+ * @see Watchable
  * @author cheetos
  * @versio 1.1
  * @since 2019
@@ -28,6 +29,8 @@ public class Chapter extends Movie{
 	/**
 	 * Implementacion y sobreescritura del metodo heredado de Movie para
 	 * simular la visualizacion en este caso de un recurso
+	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void playResource() {

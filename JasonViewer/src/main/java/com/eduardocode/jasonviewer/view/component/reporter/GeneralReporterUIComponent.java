@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import com.eduardocode.jasonviewer.model.Book;
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.model.Serie;
-import com.eduardocode.reportbuilder.model.Report;
 
 /**
  * <h1>GeneralReporterUIComponent</h1>

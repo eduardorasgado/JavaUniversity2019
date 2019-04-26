@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * <h1>Movie</h1>
- * Hereda de Watchable e implementa la interfaz IPlayable
+ * Hereda de {@link Watchable} e implementa de la interfaz {@link IPlayable}
  * <p>
  * Representacion de una pelicula en la aplicacion
  * @author cheetos
@@ -45,12 +45,15 @@ public class Movie extends Watchable implements IPlayable {
 	 * @param duration
 	 * @param year
 	 */
-	public Movie(String title, String genre, String director, int duration, short year) {
+	public Movie(String title, String genre, String director, int duration, 
+				short year) {
 		super(title, genre, director, duration, year);
 	}
 	/**
 	 * Metodo que se toma de la clase abstracta watchable
 	 * Describe la simulacion de la visualizacion de un recurso
+	 * 
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void playResource() {
@@ -63,6 +66,8 @@ public class Movie extends Watchable implements IPlayable {
 	/**
 	 * Metodos que vienen de Interface Playable
 	 * Determina y toma registro del momento en que se comienza a ver una pelicula
+	 * 
+	 * {@inheritDoc}
 	 */
 	public Date startToSee(Date dateI) {
 		// just a checking
@@ -72,6 +77,8 @@ public class Movie extends Watchable implements IPlayable {
 	/**
 	 * Toma registro del momento en que se termina una pelicula para
 	 * determinar el tiempo que tomo verse, asi pone valor a time Viewed
+	 * 
+	 * {@inheritDoc}
 	 */
 	public void stopToSee(Date dateI, Date dateF) {
 		int result = (dateF.getTime() > dateI.getTime())

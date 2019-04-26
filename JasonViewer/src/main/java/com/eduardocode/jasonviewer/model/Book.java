@@ -35,12 +35,18 @@ public class Book extends Readable implements IReadable{
 				+ getEditionDate() + ", getGenre()=" + getGenre() + "]";
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Date startToSee(Date dateI) {
 		// just a checking
         return dateI;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void stoptToSee(Date dateI, Date dateF) {
 		int result = (dateF.getTime() > dateI.getTime())

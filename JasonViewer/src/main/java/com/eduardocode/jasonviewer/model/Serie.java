@@ -9,7 +9,7 @@ import lombok.Data;
 
 /**
  * <h1>Serie</h1>
- * Representa un modelo. Hereda de Watchable
+ * Representa un modelo. Hereda de {@link Watchable}
  * <p>
  * Representacion de una serie dentro de la aplicacion
  * Una serie posee capitulos
@@ -33,6 +33,9 @@ public class Serie extends Watchable {
 		super(nombre, genre, director, year);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void playResource() {
 		this.chapters = new ArrayList<Chapter>();		
