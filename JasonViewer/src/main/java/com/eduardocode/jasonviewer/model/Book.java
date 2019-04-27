@@ -1,5 +1,6 @@
 package com.eduardocode.jasonviewer.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import lombok.Data;
@@ -21,9 +22,23 @@ public class Book extends Readable implements IReadable{
 	private String isbn;
 	private boolean read; // si el libro ha sido leido
 	private int timeRead; // cuanto tiempo tomo leerlo
+	private ArrayList<Page> pages;
 	
-	public Book(String title, String genre, Date editionDate) {
+	public Book(String title, String genre, Date editionDate, ArrayList<Page> pages) {
 		super(title, genre, editionDate);
+		this.pages = pages;
+	}
+	
+	@Data
+	public static class Page {
+		private int id;
+		private int number;
+		private String content;
+		
+		public Page(int number, String content) {
+			this.number = number;
+			this.content = content;
+		}
 	}
 
 	/**
