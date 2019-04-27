@@ -71,6 +71,10 @@ public class BooksUIComponent extends GenericViewComponent implements IFrontComp
 			System.out.println((i+1)+". "+book.getTitle()
 					+" | leido: "+book.getIsRead());
 		}
+		System.out.println("============");
+        System.out.println("0. Regresar al menu anterior");
+    	System.out.println("============");
+        System.out.println("Tu opcion:");
 	}
 
 	/**

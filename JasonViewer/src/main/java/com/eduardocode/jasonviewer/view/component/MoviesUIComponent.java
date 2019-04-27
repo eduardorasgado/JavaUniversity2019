@@ -3,8 +3,6 @@
  */
 package com.eduardocode.jasonviewer.view.component;
 
-import java.util.Scanner;
-
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.view.GenericViewComponent;
