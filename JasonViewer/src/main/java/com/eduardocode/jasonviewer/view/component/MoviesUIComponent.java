@@ -54,7 +54,6 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
         System.out.println("============");
         System.out.println("0. Regresar al menu anterior");
     	System.out.println("============");
-        System.out.println("Tu opcion: ");
 	}
 
 	/**
