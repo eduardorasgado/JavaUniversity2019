@@ -96,11 +96,17 @@ public class BookRepository implements JVRepository<Book> {
 	}
 	
 	private void initBookList() {
-		this.books.add(new Book("Hagame caso", "negocios", new Date()));
-		this.books.add(new Book("The lean Startup", "emprendimiento", new Date()));
-		this.books.add(new Book("Padre rico, padre pobre", "negocios", new Date()));
-		this.books.add(new Book("Ce qui va changer le marques", "marketing", new Date()));
-		this.books.add(new Book("lost and founder", "emprendimiento", new Date()));
+		
+		ArrayList<Book.Page> pages = new ArrayList<Book.Page>();
+		for(int i = 0; i < 3; i++) {
+			pages.add(new Book.Page(i+1, "Estas leyendo la pagina "+(i+1) ));
+		}
+		
+		this.books.add(new Book("Hagame caso", "negocios", new Date(), pages));
+		this.books.add(new Book("The lean Startup", "emprendimiento", new Date(), pages));
+		this.books.add(new Book("Padre rico, padre pobre", "negocios", new Date(), pages));
+		this.books.add(new Book("Ce qui va changer le marques", "marketing", new Date(), pages));
+		this.books.add(new Book("lost and founder", "emprendimiento", new Date(), pages));
 	}
 
 }
