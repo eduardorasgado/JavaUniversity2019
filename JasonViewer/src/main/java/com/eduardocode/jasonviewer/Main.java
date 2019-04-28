@@ -28,9 +28,9 @@ import com.eduardocode.jasonviewer.view.UserInterface;
 public class Main {
 	public static void main(String[] args) {
 		
-		// creamos una instancia d eesta clase para cargar las propiedades
-		// yaml con ayuda del propertyloader
-		DatabaseMap dbm = new DatabaseMap();
+		// se comienza con la lectura y captura de las propiedades del proyecto
+		// en el archivo yaml con ayuda del propertyloader
+		DatabaseMap.readYamlProperties();
 		
 		MovieService movieService = new MovieService();
 		SerieService serieService = new SerieService();
