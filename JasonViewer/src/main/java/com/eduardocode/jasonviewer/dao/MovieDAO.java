@@ -13,8 +13,29 @@ import com.eduardocode.jasonviewer.model.Movie;
  * Usaremos interfaces para implementar métodos que se comporten entre familias. 
  * Es decir la relación que va más allá de la herencia entre dos clases.
  * 
+ * Enfocado a acciones:
+ * 	Drawable
+ * 	Runnable
+ * 	Callable
+ * 	Visualizable
+ * 
  * Usaremos clases abstractas para definir subclases, esta siempre deberá ser 
  * heredada para poder utilizar y sobre escribir métodos de la clase padre.
+ * 
+ * Enfocado a objetos:
+ * 	Film
+ * 	Persona
+ * 	Empleado
+ * 	Figure
+ * 	Publication
+ * 
+ * Recomendaciones al hacer abstracciones:
+ * 	Enfocarse en crear interfaces y no en la implementacion
+ * 	Esto es:
+ * 		Crear buenas abstracciones
+ * 		Comportamiento común
+ * 		Declaración de métodos
+ * 
  * @author Eduardo Rasgado Ruiz
  *
  */
