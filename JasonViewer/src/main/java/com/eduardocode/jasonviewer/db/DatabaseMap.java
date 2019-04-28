@@ -33,8 +33,6 @@ public class DatabaseMap {
 	
 	public static String PASSWORD;
 	
-	// database strings
-	
 	/**
 	 * Metodo estatico que inicializa un property loader,
 	 * este a su vez leera el archivo principal yaml del proyecto

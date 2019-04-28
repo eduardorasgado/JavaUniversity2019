@@ -35,5 +35,4 @@ public interface IDBConnection {
 			return connection;
 		}
 	}
-
 }
