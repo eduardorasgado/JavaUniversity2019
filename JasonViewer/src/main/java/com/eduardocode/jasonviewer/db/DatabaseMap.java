@@ -3,6 +3,8 @@
  */
 package com.eduardocode.jasonviewer.db;
 
+import com.eduardocode.jasonviewer.utils.PropertiesLoader;
+
 /**
  * <h1>DatabaseMap</h1>
  * Clase que representa a una clase de constantes, sera una abstraccion de
@@ -11,6 +13,11 @@ package com.eduardocode.jasonviewer.db;
  *
  */
 public class DatabaseMap {
+	// properties loader
+	private PropertiesLoader propertiesloader;
+	
+	
+	// Env variables
 	public static final String DRIVER = "mysql";
 	
 	public static final String HOST = "localhost";
@@ -21,10 +28,11 @@ public class DatabaseMap {
 	
 	public static final String USER = "amazonviewer-admin";
 	
-	public static final String PASSWORD = "secret";
+	public static final String PASSWORD = "Red$ew75vPBqAV4z";
 	
 	public DatabaseMap() {
-		//
+		propertiesloader = new PropertiesLoader();
+		System.out.println(propertiesloader.getEnvPassword());
 	}
 	
 }

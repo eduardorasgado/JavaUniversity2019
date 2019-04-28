@@ -63,7 +63,7 @@ public class UserInterface extends GenericViewComponent {
 	private void showMenu() {
 		System.out.println("\n[WELCOME TO JASON VIEWER]");
         System.out.println("");
-        System.out.println("Selecciona la opcion a la que deseas accesar.");
+        System.out.println("Selecciona la opción a la que deseas accesar.");
         System.out.println("1. Movies");
         System.out.println("2. Series");
         System.out.println("3. Books");
