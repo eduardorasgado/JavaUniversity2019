@@ -17,6 +17,7 @@ import static com.eduardocode.jasonviewer.db.DatabaseMap.*;
  */
 public interface IDBConnection {
 	
+	@SuppressWarnings("finally")
 	default Connection connectToDB() {
 		Connection connection = null;
 		
@@ -31,9 +32,8 @@ public interface IDBConnection {
 			e.printStackTrace();
 		}
 		finally {
-			//
+			return connection;
 		}
-		return connection;
 	}
 
 }

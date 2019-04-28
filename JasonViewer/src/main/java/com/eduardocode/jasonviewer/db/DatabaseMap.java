@@ -3,6 +3,7 @@
  */
 package com.eduardocode.jasonviewer.db;
 
+import com.eduardocode.jasonviewer.db.configuration.vo.Configuration;
 import com.eduardocode.jasonviewer.utils.PropertiesLoader;
 
 /**
@@ -20,17 +21,19 @@ public class DatabaseMap {
 	
 	
 	// Env variables
-	public static String DRIVER = "mysql";
+	public static String DRIVER;
 	
-	public static String HOST = "localhost";
+	public static String HOST;
 	
-	public static int PORT = 3306;
+	public static int PORT;
 	
-	public static String DB = "amazonviewer-admin";
+	public static String DB;
 	
 	public static String USER;
 	
 	public static String PASSWORD;
+	
+	// database strings
 	
 	/**
 	 * Metodo estatico que inicializa un property loader,
@@ -42,18 +45,34 @@ public class DatabaseMap {
 	public static void readYamlProperties() {
 		propertiesloader = new PropertiesLoader();
 		
+		Configuration config = propertiesloader.getConfiguration();
+		
 		// inicializacion de las variables estaticas
-		PASSWORD = propertiesloader.getConfiguration()
+		DRIVER = config
+				.getConnection()
+				.getDriver();
+		
+		HOST = config
+				.getConnection()
+				.getHost();
+		
+		PORT = config
+				.getConnection()
+				.getPort();
+		
+		DB = config
+				.getConnection()
+				.getDb();
+		
+		PASSWORD = config
 				.getConnection()
 				.getCredentials()
 				.getPassword();
 		
-		USER = propertiesloader.getConfiguration()
+		USER = config
 				.getConnection()
 				.getCredentials()
 				.getUser();
-		
-		System.out.println(PASSWORD);
 	}
 	
 }
