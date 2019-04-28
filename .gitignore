@@ -28,6 +28,7 @@ hs_err_pid*
 /Geometria/nbproject/private/
 /Geometria/build/
 /FormularioAlumno/build/
+application.yaml
 
 target/
 pom.xml.tag

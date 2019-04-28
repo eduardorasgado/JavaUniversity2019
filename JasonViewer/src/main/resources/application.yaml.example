@@ -1,0 +1,4 @@
+connection:
+  credentials:
+    user: youradminuser
+    password: secret
