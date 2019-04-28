@@ -10,29 +10,50 @@ import com.eduardocode.jasonviewer.utils.PropertiesLoader;
  * Clase que representa a una clase de constantes, sera una abstraccion de
  * conceptios que involucran una coneccion a la base de datos
  * @author Eduardo Rasgado Ruiz
+ * @version 1.0
+ * @since april/2019
  *
  */
 public class DatabaseMap {
 	// properties loader
-	private PropertiesLoader propertiesloader;
+	private static PropertiesLoader propertiesloader;
 	
 	
 	// Env variables
-	public static final String DRIVER = "mysql";
+	public static String DRIVER = "mysql";
 	
-	public static final String HOST = "localhost";
+	public static String HOST = "localhost";
 	
-	public static final int PORT = 3306;
+	public static int PORT = 3306;
 	
-	public static final String DB = "amazonviewer-admin";
+	public static String DB = "amazonviewer-admin";
 	
-	public static final String USER = "amazonviewer-admin";
+	public static String USER;
 	
-	public static final String PASSWORD = "Red$ew75vPBqAV4z";
+	public static String PASSWORD;
 	
-	public DatabaseMap() {
+	/**
+	 * Metodo estatico que inicializa un property loader,
+	 * este a su vez leera el archivo principal yaml del proyecto
+	 * y al final se configuran las variables estaticas de esta clase
+	 * 
+	 * @see PropertiesLoader
+	 */
+	public static void readYamlProperties() {
 		propertiesloader = new PropertiesLoader();
-		System.out.println(propertiesloader.getEnvPassword());
+		
+		// inicializacion de las variables estaticas
+		PASSWORD = propertiesloader.getConfiguration()
+				.getConnection()
+				.getCredentials()
+				.getPassword();
+		
+		USER = propertiesloader.getConfiguration()
+				.getConnection()
+				.getCredentials()
+				.getUser();
+		
+		System.out.println(PASSWORD);
 	}
 	
 }
