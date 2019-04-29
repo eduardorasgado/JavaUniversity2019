@@ -64,6 +64,11 @@ public interface MovieDAO extends IDBConnection {
 		try(Connection connection = this.connectToDB()) {
 			PreparedStatement preparedStatement = null;
 			
+			// verificar que la pelicula aun no este registrada en las vistas
+			// si ya fue vista no se ejecuta la query
+			if(this.getMovieView(preparedStatement, connection, movie.getId())) {
+				return movie;
+			}
 			int tmovie_material_id = getMovieViewedIdInMaterialTable(preparedStatement,
 					connection);
 			
@@ -145,13 +150,19 @@ public interface MovieDAO extends IDBConnection {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			if(rs.next()) {
+				movie.setId(Integer.valueOf(rs.getString(TMOVIE_ID)));
 				movie.setTitle(rs.getString(TMOVIE_TITLE));
+				movie.setGenre(rs.getString(TMOVIE_GENRE));
+				movie.setDirector(rs.getString(TMOVIE_CREATOR));
+				movie.setYear(Short.valueOf(rs.getString(TMOVIE_YEAR)));
 			}
+			return movie;
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return movie;
+		// en caso de que no exista la pelicula
+		return null;
 	}
 	
 	// en java 9 en adelante es posible crear metodos private en interfaces
