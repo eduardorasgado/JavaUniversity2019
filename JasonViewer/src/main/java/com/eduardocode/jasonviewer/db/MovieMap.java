@@ -11,7 +11,7 @@ public final class MovieMap {
 	
 	public static final String TMOVIE = "movie";
 	
-	public static final String TMOVIE_ID = "movie";
+	public static final String TMOVIE_ID = "id";
 	public static final String TMOVIE_TITLE = "title";
 	public static final String TMOVIE_GENRE = "genre";
 	public static final String TMOVIE_CREATOR = "creator";

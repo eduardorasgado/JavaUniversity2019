@@ -18,7 +18,6 @@ public class SerieRepository implements JVRepository<Serie>{
 	private ArrayList<Serie> seriesList = null;
 	
 	public SerieRepository() {
-		System.out.println("Serie repo created-----------------------");
 		this.seriesList = new ArrayList<Serie>();
 		this.initSerieList();
 	}
