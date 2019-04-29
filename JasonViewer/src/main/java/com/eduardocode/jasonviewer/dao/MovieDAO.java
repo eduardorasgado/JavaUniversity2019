@@ -10,6 +10,8 @@ import com.eduardocode.jasonviewer.db.IDBConnection;
 import com.eduardocode.jasonviewer.model.Movie;
 
 import static com.eduardocode.jasonviewer.db.MovieMap.*;
+import static com.eduardocode.jasonviewer.db.ViewMap.*;
+import static com.eduardocode.jasonviewer.db.MaterialMap.*;
 
 /**
  * <h1>MovieDAO</h1>
@@ -85,9 +87,10 @@ public interface MovieDAO extends IDBConnection {
 						Integer.valueOf(rs.getString(TMOVIE_DURATION)),
 						Short.valueOf(rs.getString(TMOVIE_YEAR))
 						);
-				movie.setId(
-							Integer.valueOf(rs.getString(TMOVIE_ID))
-						);
+				int idDB = Integer.valueOf(rs.getString(TMOVIE_ID));
+				movie.setId(idDB);
+				
+				movie.setViewed(this.getMovieView(preparedStatement, connection, idDB));
 				
 				movies.add(movie);
 			}
@@ -108,13 +111,14 @@ public interface MovieDAO extends IDBConnection {
 		Movie movie = new Movie();
 		
 		String query = "SELECT * FROM "+TMOVIE+" WHERE "
-								+TMOVIE_ID+" = '"+id+"'";
-		System.out.println(query);
+								+TMOVIE_ID+" = ?";
 		
 		try(Connection connection = this.connectToDB()) {
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, id);
 			
 			ResultSet rs = preparedStatement.executeQuery();
+			
 			if(rs.next()) {
 				movie.setTitle(rs.getString(TMOVIE_TITLE));
 			}
@@ -128,7 +132,72 @@ public interface MovieDAO extends IDBConnection {
 	// en java 9 en adelante es posible crear metodos private en interfaces
 	//private void doSomething();
 	
-	public static boolean getMovieView() {
-		return false;
+	/**
+	 * Metodo default para comprobar de la base de datos si una pelicula ya
+	 * fue vista por un determinado usuario
+	 * @param preparedStatement query builder
+	 * @param connection conexion a la base de datos
+	 * @param id identificador del usuario
+	 * @return si la pelicula ya fue vista o no
+	 */
+	default boolean getMovieView(PreparedStatement preparedStatement,
+			Connection connection, int id) {
+		
+		// flag para confirmar que existe una pelicula vista con el id
+		boolean viewed = false;
+		
+		int movieIdMaterial = this.getMovieViewedIdInMaterialTable(preparedStatement,
+				connection);
+		// id de usuario hardcodeado
+		int userId = 1;
+		
+		String query = "SELECT * FROM " + TVIEWED +
+				" WHERE " + TVIEWED_ID_MATERIAL + " = ?"
+				+" AND "+TVIEWED_ID_ELEMENT+" = ?"
+				+" AND "+TVIEWED_ID_USER+" = ?";
+		
+		ResultSet rs = null;
+		try {
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, movieIdMaterial);
+			preparedStatement.setInt(2, id);
+			preparedStatement.setInt(3, userId);
+			
+			rs = preparedStatement.executeQuery();
+			
+			viewed = rs.next();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return viewed;
+	}
+	
+	/**
+	 * Metodo que busca dentro de la tabla material, el identificador de
+	 * el material "movie"
+	 * @return el id de el material movie
+	 */
+	default int getMovieViewedIdInMaterialTable(PreparedStatement preparedStatement,
+			Connection connection) {
+		String query = "SELECT * FROM "+TMATERIAL + " WHERE "
+				+ TMATERIAL_NAME + " = ?";
+		
+		try {
+			preparedStatement = connection
+					.prepareStatement(query);
+			preparedStatement.setString(1, TMOVIE);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if(rs.next()) {
+				return Integer.valueOf(rs.getString(TMATERIAL_ID));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }
