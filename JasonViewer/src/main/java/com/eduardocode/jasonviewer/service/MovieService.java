@@ -56,7 +56,8 @@ public class MovieService extends WatchableService
 	 */
 	@Override
 	public Movie findByIndex(int index) {
-		return movieRepository.findByIndex(index);
+		// de MovieDAO
+		return this.get(index);
 	}
 	
 	/**

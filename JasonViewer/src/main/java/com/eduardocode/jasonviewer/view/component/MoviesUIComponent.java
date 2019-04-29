@@ -3,6 +3,8 @@
  */
 package com.eduardocode.jasonviewer.view.component;
 
+import java.util.ArrayList;
+
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.service.MovieService;
 import com.eduardocode.jasonviewer.view.GenericViewComponent;
@@ -19,6 +21,7 @@ import lombok.Data;
 public class MoviesUIComponent extends GenericViewComponent implements IFrontComponent<Movie, MovieService> {
 	
 	private MovieService movieService = null;
+	private ArrayList<Movie> movies;
 	
 	public MoviesUIComponent() {
 	}
@@ -31,8 +34,10 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 	@Override
 	public void setService(MovieService movieService) {
 		this.movieService = movieService;
+		// consiguiendo todas las peliculas
+		movies = movieService.getAll();
 		// para tener el maximo al momento de tomar el input del usuario
-		this.maxOption = movieService.getAll().size();
+		this.maxOption = this.movies.size();
 	}
 	
 	/**
@@ -42,8 +47,9 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 	public void showMenu() {
 		System.out.println("::MOVIES::");
         
+		
         for(int i = 0; i < this.maxOption; i++) {
-        	Movie movie = movieService.findByIndex(i);
+        	Movie movie = movies.get(i);
         	String viewed = movie.getIsViewed();
         	
         	System.out.println("============");
@@ -89,8 +95,9 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 	 */
 	@Override
 	public void showResourcePlayer(int option) {
+		Movie movie = this.movies.get(option);
 		System.out.println("[REPRODUCIENDO LA PELICULA ]: "
-					+ movieService.findByIndex(option).getTitle());
+					+ movie.getTitle());
 		
 		System.out.println("");
 		movieService.playResource(option);

@@ -98,6 +98,33 @@ public interface MovieDAO extends IDBConnection {
 		return movies;
 	}
 	
+	/**
+	 * Metodo que busca una pelicula dentro de la base de datos con un id
+	 * especifico
+	 * @param id identificador de la pelicula deseada
+	 * @return Una pelicula
+	 */
+	default Movie get(int id) {
+		Movie movie = new Movie();
+		
+		String query = "SELECT * FROM "+TMOVIE+" WHERE "
+								+TMOVIE_ID+" = '"+id+"'";
+		System.out.println(query);
+		
+		try(Connection connection = this.connectToDB()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			if(rs.next()) {
+				movie.setTitle(rs.getString(TMOVIE_TITLE));
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return movie;
+	}
+	
 	// en java 9 en adelante es posible crear metodos private en interfaces
 	//private void doSomething();
 	
