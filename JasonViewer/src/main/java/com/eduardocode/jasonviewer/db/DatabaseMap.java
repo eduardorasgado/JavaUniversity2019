@@ -34,6 +34,8 @@ public class DatabaseMap {
 	
 	public static String PASSWORD;
 	
+	public static String LOCAL_TIMEZONE;
+	
 	/**
 	 * Metodo estatico que inicializa un property loader,
 	 * este a su vez leera el archivo principal yaml del proyecto
@@ -79,6 +81,10 @@ public class DatabaseMap {
 				.getConnection()
 				.getCredentials()
 				.getUser();
+		
+		LOCAL_TIMEZONE = config
+				.getConnection()
+				.getLocalTimezone();
 	}
 	
 }

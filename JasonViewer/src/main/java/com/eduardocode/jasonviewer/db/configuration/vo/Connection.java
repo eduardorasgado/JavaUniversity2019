@@ -18,6 +18,7 @@ public final class Connection {
 	private String host;
 	private int port;
 	private String db;
+	private String localTimezone;
 
 	@Override
 	public String toString() {

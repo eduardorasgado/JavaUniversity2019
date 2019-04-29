@@ -22,7 +22,9 @@ public interface IDBConnection {
 		Connection connection = null;
 		
 		// estas constantes cargan debido al import static de la clase DatabaseMap
-		String connectionURL = "jdbc:"+DRIVER_ALIAS+"://"+HOST+":"+PORT;
+		String connectionURL = "jdbc:"+DRIVER_ALIAS+"://"+HOST+":"+PORT+"/"+DB
+				+"?useLegacyDatetimeCode=false&serverTimezone="+LOCAL_TIMEZONE;
+		
 		try {
 			Class.forName(DRIVER_PACKAGE);
 			// usando la clase driver manager para ejecutar una conexion

@@ -8,3 +8,4 @@ connection:
   host: localhost
   port: 3306
   db: yourdatabasename
+  localTimezone: America/Mexico_City
