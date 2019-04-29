@@ -1,8 +1,15 @@
 package com.eduardocode.jasonviewer.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.eduardocode.jasonviewer.db.IDBConnection;
 import com.eduardocode.jasonviewer.model.Movie;
+
+import static com.eduardocode.jasonviewer.db.MovieMap.*;
 
 /**
  * <h1>MovieDAO</h1>
@@ -39,7 +46,7 @@ import com.eduardocode.jasonviewer.model.Movie;
  * @author Eduardo Rasgado Ruiz
  *
  */
-public interface MovieDAO {
+public interface MovieDAO extends IDBConnection {
 
 	/**
 	 * Metodo para introducir una pelicula en la clase que implemente la 
@@ -58,6 +65,36 @@ public interface MovieDAO {
 	default ArrayList<Movie> read() {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
 		
+		String query = "SELECT * FROM "+TMOVIE+";";
+		
+		// creando una conexion a la base de datos con la funcion de la clase
+		// IDBConnection
+		try(Connection connection= this.connectToDB()){
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while(rs.next()) {
+				// revisando fila por fila de los datos traidos de la db
+				// llenando el arreglo de peliculas con los datos de la busqueda
+				Movie movie = new Movie(
+						rs.getString(TMOVIE_TITLE),
+						rs.getString(TMOVIE_GENRE),
+						rs.getString(TMOVIE_CREATOR),
+						Integer.valueOf(rs.getString(TMOVIE_DURATION)),
+						Short.valueOf(rs.getString(TMOVIE_YEAR))
+						);
+				movie.setId(
+							Integer.valueOf(rs.getString(TMOVIE_ID))
+						);
+				
+				movies.add(movie);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return movies;
 	}
 	
