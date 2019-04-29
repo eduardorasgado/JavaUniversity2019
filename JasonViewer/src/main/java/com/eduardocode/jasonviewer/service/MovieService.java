@@ -28,7 +28,7 @@ public class MovieService extends WatchableService
 	 */
 	@Override
 	public void playResource(int index) {	
-		Movie movieSelected = this.movieRepository.findByIndex(index);
+		Movie movieSelected = this.get(index);
 		
 		movieSelected.setViewed(true);
 		Date dateI = movieSelected.startToSee(new Date());

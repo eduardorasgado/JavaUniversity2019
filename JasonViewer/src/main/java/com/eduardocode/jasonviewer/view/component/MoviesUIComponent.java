@@ -95,12 +95,14 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 	 */
 	@Override
 	public void showResourcePlayer(int option) {
+		// leyendo nombre de la pelicula de aqui
 		Movie movie = this.movies.get(option);
 		System.out.println("[REPRODUCIENDO LA PELICULA ]: "
 					+ movie.getTitle());
 		
 		System.out.println("");
-		movieService.playResource(option);
+		// enviando el id verdadero de la entidad de la pelicula deseada
+		movieService.playResource(movie.getId());
 	}
 
 }
