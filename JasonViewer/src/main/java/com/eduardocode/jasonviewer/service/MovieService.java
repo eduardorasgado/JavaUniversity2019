@@ -3,6 +3,7 @@ package com.eduardocode.jasonviewer.service;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.eduardocode.jasonviewer.dao.MovieDAO;
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.repository.MovieRepository;
 
@@ -11,7 +12,8 @@ import com.eduardocode.jasonviewer.repository.MovieRepository;
  * @author cheetos
  *
  */
-public class MovieService extends WatchableService implements IWatchableService<Movie> {
+public class MovieService extends WatchableService 
+							implements IWatchableService<Movie>, MovieDAO {
 
 	private MovieRepository movieRepository;
 	
@@ -43,7 +45,8 @@ public class MovieService extends WatchableService implements IWatchableService<
 	 */
 	@Override
 	public ArrayList<Movie> getAll() {
-		return movieRepository.getAll();
+		//return movieRepository.getAll();
+		return this.read();
 	}
 
 	/**
