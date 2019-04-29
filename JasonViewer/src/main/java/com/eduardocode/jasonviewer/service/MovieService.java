@@ -30,13 +30,15 @@ public class MovieService extends WatchableService
 	public void playResource(int index) {	
 		Movie movieSelected = this.get(index);
 		
-		movieSelected.setViewed(true);
+		// poniendo como vista la pelicula
+		this.setMovieView(movieSelected);
+		
 		Date dateI = movieSelected.startToSee(new Date());
 		this.simulateTimeLapse(2000);
 		movieSelected.stopToSee(dateI, new Date());
 		
 		// intercambiar la pelicula que modificamos por el nuevo elemento
-		this.movieRepository.update(index, movieSelected);
+		//this.movieRepository.update(index, movieSelected);
 	}
 
 	/**

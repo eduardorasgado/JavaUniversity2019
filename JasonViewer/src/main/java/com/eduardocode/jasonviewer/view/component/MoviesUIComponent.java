@@ -73,7 +73,8 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 		} else {
 			while(true) {
 				// actualizando el tamano de la lista cada vez que se repite el ciclo
-				this.maxOption = movieService.getAll().size();
+				movies = movieService.getAll();
+				this.maxOption = movies.size();
 				this.showMenu();
 				
 				int option = this.getInputAndValidating();
