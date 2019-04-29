@@ -57,7 +57,32 @@ public interface MovieDAO extends IDBConnection {
 	 * @return
 	 */
 	default Movie setMovieView(Movie movie) {
-		return movie;
+		String query = "INSERT INTO "+TVIEWED+" ("+TVIEWED_ID_MATERIAL+","
+						+TVIEWED_ID_ELEMENT+","
+						+TVIEWED_ID_USER+") VALUES (?, ?, ?)";
+		
+		try(Connection connection = this.connectToDB()) {
+			PreparedStatement preparedStatement = null;
+			
+			int tmovie_material_id = getMovieViewedIdInMaterialTable(preparedStatement,
+					connection);
+			
+			preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setInt(1, tmovie_material_id);
+			preparedStatement.setInt(2, movie.getId());
+			// user id hardcodeado
+			preparedStatement.setInt(3, 1);
+
+			// insertando la fila con la pelicula vista
+			preparedStatement.execute();
+			// regresamos la pelicula que actualizamos
+			return this.get(movie.getId());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**
@@ -158,6 +183,12 @@ public interface MovieDAO extends IDBConnection {
 		
 		ResultSet rs = null;
 		try {
+			// en caso de que no exista movies en material table
+			if(movieIdMaterial == -1) {
+				System.out.println("No existe el materia "
+								+TMOVIE+" en la tabla "+TMATERIAL);
+				throw new SQLException();
+			}
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, movieIdMaterial);
 			preparedStatement.setInt(2, id);
@@ -165,6 +196,7 @@ public interface MovieDAO extends IDBConnection {
 			
 			rs = preparedStatement.executeQuery();
 			
+			// si existe un elemento en la tabla entonces regresa una vista
 			viewed = rs.next();
 			
 		} catch (SQLException e) {
@@ -192,7 +224,8 @@ public interface MovieDAO extends IDBConnection {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			if(rs.next()) {
-				return Integer.valueOf(rs.getString(TMATERIAL_ID));
+				int tmovie_material_id = Integer.valueOf(rs.getString(TMATERIAL_ID));
+				return tmovie_material_id;
 			}
 			
 		} catch (SQLException e) {
