@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 public final class Connection {
 	private Credentials credentials;
-	private String driver;
+	private Driver driver;
 	private String host;
 	private int port;
 	private String db;

@@ -24,7 +24,7 @@ public interface IDBConnection {
 		// estas constantes cargan debido al import static de la clase DatabaseMap
 		String connectionURL = "jdbc:"+DRIVER_ALIAS+"://"+HOST+":"+PORT;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(DRIVER_PACKAGE);
 			// usando la clase driver manager para ejecutar una conexion
 			connection = DriverManager.getConnection(connectionURL, USER,
 											PASSWORD);

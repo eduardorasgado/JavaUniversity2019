@@ -47,9 +47,16 @@ public class DatabaseMap {
 		Configuration config = propertiesloader.getConfiguration();
 		
 		// inicializacion de las variables estaticas
+		
+		DRIVER_PACKAGE = config
+				.getConnection()
+				.getDriver()
+				.getPackageDir();
+		
 		DRIVER_ALIAS = config
 				.getConnection()
-				.getDriver();
+				.getDriver()
+				.getDbengine();
 		
 		HOST = config
 				.getConnection()
