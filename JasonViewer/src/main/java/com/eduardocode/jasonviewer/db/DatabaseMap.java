@@ -18,10 +18,11 @@ import com.eduardocode.jasonviewer.utils.PropertiesLoader;
 public class DatabaseMap {
 	// properties loader
 	private static PropertiesLoader propertiesloader;
-	
-	
 	// Env variables
-	public static String DRIVER;
+	
+	public static String DRIVER_PACKAGE;
+	
+	public static String DRIVER_ALIAS;
 	
 	public static String HOST;
 	
@@ -46,7 +47,7 @@ public class DatabaseMap {
 		Configuration config = propertiesloader.getConfiguration();
 		
 		// inicializacion de las variables estaticas
-		DRIVER = config
+		DRIVER_ALIAS = config
 				.getConnection()
 				.getDriver();
 		

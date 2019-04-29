@@ -22,12 +22,15 @@ public interface IDBConnection {
 		Connection connection = null;
 		
 		// estas constantes cargan debido al import static de la clase DatabaseMap
-		String connectionURL = "jdbc:"+DRIVER+"://"+HOST+":"+PORT;
+		String connectionURL = "jdbc:"+DRIVER_ALIAS+"://"+HOST+":"+PORT;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			// usando la clase driver manager para ejecutar una conexion
 			connection = DriverManager.getConnection(connectionURL, USER,
 											PASSWORD);
+			if(connection != null) {
+				System.out.println("[Se ha establecido la conexión al a base de datos]");
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
