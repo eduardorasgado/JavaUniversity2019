@@ -11,6 +11,7 @@ import com.eduardocode.jasonviewer.service.SerieService;
 import com.eduardocode.jasonviewer.view.component.BooksUIComponent;
 import com.eduardocode.jasonviewer.view.component.MoviesUIComponent;
 import com.eduardocode.jasonviewer.view.component.SeriesUIComponent;
+import com.eduardocode.jasonviewer.view.component.reporter.DateReporterUIComponent;
 import com.eduardocode.jasonviewer.view.component.reporter.GeneralReporterUIComponent;
 
 /**
@@ -30,6 +31,7 @@ public class UserInterface extends GenericViewComponent {
 	SeriesUIComponent seriesUIComponent = null;
 	BooksUIComponent bookUIComponent = null;
 	GeneralReporterUIComponent generalReporterUIComponent = null;
+	DateReporterUIComponent dateReporterUIComponent = null;
 	
 	private  MovieService movieService = null;
 	private SerieService serieService = null;
@@ -47,6 +49,7 @@ public class UserInterface extends GenericViewComponent {
 		this.bookUIComponent = new BooksUIComponent();
 		this.bookUIComponent.setService(bookService);
 		this.generalReporterUIComponent = new GeneralReporterUIComponent(3);
+		this.dateReporterUIComponent = new DateReporterUIComponent();
 		
 		// actualizando los servicios globales
 		this.movieService = movieService;
@@ -123,8 +126,8 @@ public class UserInterface extends GenericViewComponent {
 	            break;
 	        case 6:
 	            Date today = new Date();
-	            System.out.println("Reporte del dia "+today);
-	            //makeReport(today);
+	            this.dateReporterUIComponent.setDate(today);
+	            this.dateReporterUIComponent.interact();
 	            break;
 		}
 	}
