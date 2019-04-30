@@ -49,7 +49,8 @@ public class UserInterface extends GenericViewComponent {
 		this.bookUIComponent = new BooksUIComponent();
 		this.bookUIComponent.setService(bookService);
 		this.generalReporterUIComponent = new GeneralReporterUIComponent(3);
-		this.dateReporterUIComponent = new DateReporterUIComponent();
+		// 3 es la cantidad de servicios del reporte
+		this.dateReporterUIComponent = new DateReporterUIComponent(3);
 		
 		// actualizando los servicios globales
 		this.movieService = movieService;
@@ -127,6 +128,10 @@ public class UserInterface extends GenericViewComponent {
 	        case 6:
 	            Date today = new Date();
 	            this.dateReporterUIComponent.setDate(today);
+	            this.dateReporterUIComponent.setMovieService(movieService);
+	        	this.dateReporterUIComponent.setSerieService(serieService);
+	        	this.dateReporterUIComponent.setBookService(bookService);
+	        	
 	            this.dateReporterUIComponent.interact();
 	            break;
 		}
