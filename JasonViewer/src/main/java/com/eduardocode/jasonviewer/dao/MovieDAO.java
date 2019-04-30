@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.eduardocode.jasonviewer.db.IDBConnection;
 import com.eduardocode.jasonviewer.model.Movie;
@@ -56,38 +57,38 @@ public interface MovieDAO extends IDBConnection {
 	 * @param movie
 	 * @return
 	 */
-	default Movie setMovieView(Movie movie) {
+	default void setMovieView(Movie movie) {
 		String query = "INSERT INTO "+TVIEWED+" ("+TVIEWED_ID_MATERIAL+","
 						+TVIEWED_ID_ELEMENT+","
-						+TVIEWED_ID_USER+") VALUES (?, ?, ?)";
+						+TVIEWED_ID_USER+","
+						+TVIEWED_CREATED_AT+") VALUES (?, ?, ?, ?)";
 		
 		try(Connection connection = this.connectToDB()) {
 			PreparedStatement preparedStatement = null;
 			
 			// verificar que la pelicula aun no este registrada en las vistas
 			// si ya fue vista no se ejecuta la query
-			if(this.getMovieView(preparedStatement, connection, movie.getId())) {
-				return movie;
-			}
-			int tmovie_material_id = getMovieViewedIdInMaterialTable(preparedStatement,
-					connection);
-			
-			preparedStatement = connection.prepareStatement(query);
-			
-			preparedStatement.setInt(1, tmovie_material_id);
-			preparedStatement.setInt(2, movie.getId());
-			// user id hardcodeado
-			preparedStatement.setInt(3, 1);
+			if(!this.getMovieView(preparedStatement, connection, movie.getId())) {
+				// se busca primero el id del material movie
+				int tmovie_material_id = getMovieViewedIdInMaterialTable(preparedStatement,
+						connection);
+				
+				preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setInt(1, tmovie_material_id);
+				preparedStatement.setInt(2, movie.getId());
+				// user id hardcodeado
+				preparedStatement.setInt(3, 1);
+				// insertando la fecha de hoy
+				preparedStatement.setDate(4, new java.sql.Date(new Date().getTime()));
 
-			// insertando la fila con la pelicula vista
-			preparedStatement.execute();
-			// regresamos la pelicula que actualizamos
-			return this.get(movie.getId());
+				// insertando la fila con la pelicula vista
+				preparedStatement.execute();
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
 	}
 	
 	/**

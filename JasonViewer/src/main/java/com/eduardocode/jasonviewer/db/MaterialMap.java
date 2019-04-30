@@ -15,5 +15,4 @@ public final class MaterialMap {
 	
 	public static final String TMATERIAL_ID = "id";
 	public static final String TMATERIAL_NAME = "name";
-
 }
