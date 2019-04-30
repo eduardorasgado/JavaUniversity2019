@@ -88,7 +88,8 @@ public class GeneralReporterUIComponent extends GenericReporterComponent {
 			content += movieLine+"\n";
 		}
 		// generando el reporte
-		this.generateReport("::REPORTE DE PELICULAS::", "reporte_general_de_peliculas", content);
+		this.generateReport("::REPORTE DE PELICULAS::", 
+				"reporte_general_de_peliculas", content);
 	}
 
 	/**

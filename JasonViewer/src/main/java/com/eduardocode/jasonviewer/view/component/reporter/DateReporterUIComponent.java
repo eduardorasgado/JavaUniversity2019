@@ -21,10 +21,12 @@ public class DateReporterUIComponent extends GenericReporterComponent {
 	private ArrayList<Serie> series = null;
 	private ArrayList<Book> books = null;
 	private SimpleDateFormat formatter;
+	private SimpleDateFormat formatterForFileName;
 	
 	public DateReporterUIComponent(int q) {
 		this.maxOption = q;
 		formatter = new SimpleDateFormat("dd/MM/yyyy");
+		formatterForFileName = new SimpleDateFormat("dd-MM-yyyy");
 	}
 	
 	@Override
@@ -77,7 +79,10 @@ public class DateReporterUIComponent extends GenericReporterComponent {
 			content += movieLine+"\n";
 		}
 		// generando el reporte
-		this.generateReport("::REPORTE DE PELICULAS::", "reporte_general_de_peliculas", content);		
+		String stringDate = this.formatterForFileName.format(reportDate);
+		this.generateReport("::REPORTE DE PELICULAS DEL DIA "
+				+stringDate+"::", 
+				"reporte_de_peliculas-"+stringDate, content);		
 	}
 
 	@Override
