@@ -156,6 +156,8 @@ public interface MovieDAO extends IDBConnection {
 				movie.setGenre(rs.getString(TMOVIE_GENRE));
 				movie.setDirector(rs.getString(TMOVIE_CREATOR));
 				movie.setYear(Short.valueOf(rs.getString(TMOVIE_YEAR)));
+				movie.setViewed(this.getMovieView(preparedStatement, 
+								connection, movie.getId()));
 			}
 			return movie;
 			
@@ -218,26 +220,54 @@ public interface MovieDAO extends IDBConnection {
 		return viewed;
 	}
 	
+	/**
+	 * Metodo que devuelve una lista de peliculas vistas en una fecha determinada
+	 * Primero busca en la tabla viewed los ids de las peliculas y fecha
+	 * y luego busca estas peliculas en la tabla movie y las devuelve juntas
+	 * @param date fecha de busqueda
+	 * @return lista de peliculas vistas en la fecha determinada
+	 */
 	default ArrayList<Movie> readWithDate(Date date) {
+		// donde guardar los indices de las peliculas que cunmplen con la fecha
 		ArrayList<Integer> moviesIds = new ArrayList<Integer>();
+		// las peliculas a regresar
 		ArrayList<Movie> movies = new ArrayList<Movie>();
 		
-		String query = "SELECT * FROM "+TVIEWED+" WHERE "+TVIEWED_CREATED_AT
-				+" =?";
+		String query = "SELECT * FROM "+TVIEWED+" WHERE "+
+				TVIEWED_ID_MATERIAL+" = ? AND "+
+				TVIEWED_CREATED_AT+" =?";
 		
 		PreparedStatement ps = null;
 		
 		try(Connection connection = this.connectToDB()){
 			
 			ps = connection.prepareStatement(query);
-			ps.setDate(1, new java.sql.Date(date.getTime()));
+			// el id de movie en la columna material
+			ps.setInt(1, getMovieViewedIdInMaterialTable(ps, connection));
+			// la fecha deseada
+			ps.setDate(2, new java.sql.Date(date.getTime()));
 			
 			ResultSet rs = ps.executeQuery();
-			if(rs)
+			// se llena la lista de los indices de las movies
+			while(rs.next()) {
+				moviesIds.add(new Integer(
+								Integer.valueOf(
+											rs.getString(TVIEWED_ID_ELEMENT)
+										)
+							));
+			}
 			
+			// ahora se buscan esas movies
+			for(Integer id : moviesIds) {
+				Movie movie = this.get(id);
+				movies.add(movie);
+			}
+			
+			return movies;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return movies;
 	}
 	
 	/**
