@@ -218,6 +218,28 @@ public interface MovieDAO extends IDBConnection {
 		return viewed;
 	}
 	
+	default ArrayList<Movie> readWithDate(Date date) {
+		ArrayList<Integer> moviesIds = new ArrayList<Integer>();
+		ArrayList<Movie> movies = new ArrayList<Movie>();
+		
+		String query = "SELECT * FROM "+TVIEWED+" WHERE "+TVIEWED_CREATED_AT
+				+" =?";
+		
+		PreparedStatement ps = null;
+		
+		try(Connection connection = this.connectToDB()){
+			
+			ps = connection.prepareStatement(query);
+			ps.setDate(1, new java.sql.Date(date.getTime()));
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs)
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Metodo que busca dentro de la tabla material, el identificador de
 	 * el material "movie"
