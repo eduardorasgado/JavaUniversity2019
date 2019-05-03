@@ -4,6 +4,7 @@
 package com.eduardocode.jasonviewer.view.component;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.eduardocode.jasonviewer.model.Movie;
 import com.eduardocode.jasonviewer.service.MovieService;
@@ -47,16 +48,16 @@ public class MoviesUIComponent extends GenericViewComponent implements IFrontCom
 	public void showMenu() {
 		System.out.println("::MOVIES::");
         
-		
-        for(int i = 0; i < this.maxOption; i++) {
-        	Movie movie = movies.get(i);
-        	String viewed = movie.getIsViewed();
+		AtomicInteger ai = new AtomicInteger();
+		movies.forEach(movie -> {
+			String viewed = movie.getIsViewed();
         	
         	System.out.println("============");
-        	System.out.print((i+1)+". "+movie.getTitle());
+        	System.out.print((ai.getAndIncrement())+". "+movie.getTitle());
         	System.out.print(" | genero: "+movie.getGenre());
         	System.out.println(" | visto: "+viewed);
-        }
+		});
+		
         System.out.println("============");
         System.out.println("0. Regresar al menu anterior");
     	System.out.println("============");
